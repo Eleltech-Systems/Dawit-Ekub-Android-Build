@@ -29,7 +29,11 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.eleltech.dawitekub"
+      "package": "com.eleltech.dawitekub",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -51,6 +55,11 @@
       "expo-audio",
       "expo-font",
       "expo-asset"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "345391ab-1385-44c0-8b04-0178ee44cfc6"
+      }
+    }
   }
 }

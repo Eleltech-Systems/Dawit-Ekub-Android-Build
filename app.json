@@ -3,6 +3,7 @@
     "name": "Dawit Ekub",
     "slug": "dawit-ekub",
     "version": "1.0.0",
+    "owner": "eleltech-systems",
     "orientation": "portrait",
     "icon": "./assets/icons/ios-light.png",
     "userInterfaceStyle": "light",

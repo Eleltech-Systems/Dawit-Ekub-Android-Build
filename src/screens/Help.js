@@ -1,9 +1,14 @@
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Image, Linking, ScrollView, Text, View } from 'react-native';
 import styles from '../styles/ComponentStyles';
 import { COLORS } from '../constants/theme';
 import { Entypo, Ionicons } from '@expo/vector-icons';
 
 export default function Help() {
+
+     const handleUrlPress = (url) => {
+          Linking.openURL(url).catch((err) => console.error("Failed to open URL:", err));
+     };
+
      return (
           <ScrollView>
                <View style={{ marginTop: 20 }}>

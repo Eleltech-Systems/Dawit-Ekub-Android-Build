@@ -261,7 +261,7 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                                         <Text style={styles.smallText}>{"እጣ ቁጥር ይሰይሙ"}</Text>
                                    </TouchableOpacity>
                                    :
-                                   <>
+                                   <View style={{ marginBottom: 50 }}>
                                         <TouchableOpacity onPress={() => handleCloseInput()}
                                              style={{ alignSelf: "flex-end", marginHorizontal: 20, marginTop: 20 }}>
                                              <Ionicons name="close" size={20} color="black" />
@@ -319,7 +319,7 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                                                   <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ይሰይሙ"}</Text>
                                              </Pressable>
                                         }
-                                   </>
+                                   </View>
                               }
                          </ScrollView>
                     </KeyboardAvoidingView>

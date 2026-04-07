@@ -72,8 +72,8 @@ export default function Help() {
                     <View style={{ backgroundColor: COLORS.gray, borderRadius: 12, paddingHorizontal: 20, marginBottom: 50 }}>
                          <Text style={[styles.smallText, { marginTop: 10, textAlign: "center" }]}>{"በተንቀሳቃሽ ምስል ( Video ) የታገዘ ማብራሪያዎችን ለመመልከት ከስር በሚገኙት ቻናሎቻችንን ይመልከቱ።"}</Text>
                          <View style={[styles.basicStyle, { gap: 30, marginVertical: 20, }]}>
-                              <Ionicons name="logo-tiktok" size={20} color={COLORS.gray2} onPress={() => handleUrlPress("https://www.tiktok.com/@eleltechsystems")} />
-                              <Entypo name="youtube" size={24} color={COLORS.gray2} onPress={() => handleUrlPress("https://www.youtube.com/@EleltechSystems")} />
+                              <Ionicons name="logo-tiktok" size={20} color="purple" onPress={() => handleUrlPress("https://www.tiktok.com/@eleltech_systems")} />
+                              <Entypo name="youtube" size={24} color="red" onPress={() => handleUrlPress("https://www.youtube.com/@Eleltech-Systems")} />
                          </View>
                     </View>
                </View>

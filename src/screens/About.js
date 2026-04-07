@@ -2,7 +2,7 @@ import { Linking, Pressable, ScrollView, Text, View } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { COLORS } from '../constants/theme';
 import styles from '../styles/ComponentStyles';
-import { FontAwesome6 } from '@expo/vector-icons';
+import { FontAwesome6, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import * as Application from 'expo-application';
 
 export default function About({ navigation }) {
@@ -23,9 +23,10 @@ export default function About({ navigation }) {
                     <Text style={[styles.largText, { color: COLORS.primary }]}>{"Dawit Ekub"}</Text>
                     <Text style={styles.smallText}>{`Version: ${currentAppVersion}`}</Text>
                </View>
+
                <View style={{ margin: 20, gap: 20 }}>
                     <Text style={[styles.smallText, { textAlign: "justify" }]}>
-                         {"በ Eleltech Systems ተዘጋጅቶ የቀረበላችሁ ዳዊት እቁብ መተግበሪያ ለእቁብ ብር ሰብሳቢዎች ወይም አስተዳዳሪዎች ጥሩ መፍትሄ ይዞ የመጣ ሲሆን እቁብ ሰብሳቢ ለሆናችሁ እቁባችሁን በቀላሉ ለማስተዳደር ይጠቅማችኋል።"}
+                         {"በ እልልቴክ ሲስተምስ (Eleltech Systems) ተዘጋጅቶ የቀረበላችሁ ዳዊት እቁብ መተግበሪያ ለእቁብ ብር ሰብሳቢዎች ወይም አስተዳዳሪዎች ጥሩ መፍትሄ ይዞ የመጣ ሲሆን እቁብ ሰብሳቢ ለሆናችሁ እቁባችሁን በቀላሉ ለማስተዳደር ይጠቅማችኋል።"}
                     </Text>
                     <Text style={[styles.smallText, { textAlign: "justify" }]}>
                          {"ሶስት የተለያዩ እቁቦችን ማለትም የቀን ፣ የሳምንት ፣ እንዲሁም የወር እቁቦችን በተቀላጠፈ ሁኔታ በፈለጉት መጠን እና አይነት ለማስተዳደር ያግዛል። "}
@@ -48,27 +49,54 @@ export default function About({ navigation }) {
                               {" እገዛ-ከፈለጉ "}
                          </Text>
                     </Text>
-                    <View style={{ backgroundColor: COLORS.gray, borderRadius: 12, paddingHorizontal: 40 }}>
-                         <Text style={[styles.smallText, { marginTop: 10, textAlign: "center" }]}>
-                              {"ለማንኛውም ጥያቄዎና አስተያየትዎ በተከታዮቹ አድራሻዎች ያግኙን።"}
-                         </Text>
-                         <View style={[styles.basicStyle, { gap: 30, marginVertical: 20, }]}>
-                              <FontAwesome6 name="facebook" size={20} color={COLORS.gray2} onPress={() => handleUrlPress("https://www.facebook.com/profile.php?id=61552306718431")} />
-                              <FontAwesome6 name="instagram" size={20} color={COLORS.gray2} onPress={() => handleUrlPress("https://www.instagram.com/eleltech_systems/")} />
-                              <FontAwesome6 name="tiktok" size={20} color={COLORS.gray2} onPress={() => handleUrlPress("https://www.tiktok.com/@eleltechsystems")} />
-                              <FontAwesome6 name="youtube" size={24} color={COLORS.gray2} onPress={() => handleUrlPress("https://www.youtube.com/@EleltechSystems")} />
+
+                    <View style={{ paddingHorizontal: 0 }}>
+                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                              <MaterialIcons name="email" size={24} color="#f97316" />
+                              <Text style={styles.smallText}>Email: Eleltechsystems@gmail.com</Text>
                          </View>
-                         <Pressable onPress={() => handleUrlPress("https://www.eleltech.com/")}>
-                              <Text style={[styles.smallText, { color: "blue", textDecorationLine: "underline", alignSelf: 'center', marginBottom: 10 }]}>
-                                   {"www.eleltech.com"}
-                              </Text>
-                         </Pressable>
+                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                              <MaterialCommunityIcons name="web" size={24} color="#6594eb" />
+                              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                                   <Text style={styles.smallText}>Website:</Text>
+                                   <Pressable onPress={() => handleUrlPress("https://www.eleltech.com")}>
+                                        <Text style={[styles.smallText, { color: "blue", textDecorationLine: "underline" }]}>
+                                             {"www.eleltech.com"}
+                                        </Text>
+                                   </Pressable>
+                              </View>
+                         </View>
+                         <View style={[styles.basicStyle, { gap: 30, marginVertical: 30, }]}>
+                              <FontAwesome6 name="facebook" size={20} color="blue" onPress={() => handleUrlPress("https://www.facebook.com/profile.php?id=61552306718431")} />
+                              <FontAwesome6 name="instagram" size={20} color="purple" onPress={() => handleUrlPress("https://www.instagram.com/eleltech_systems/")} />
+                              <FontAwesome6 name="tiktok" size={20} color="purple" onPress={() => handleUrlPress("https://www.tiktok.com/@eleltech_systems")} />
+                              <FontAwesome6 name="youtube" size={24} color="red" onPress={() => handleUrlPress("https://www.youtube.com/channel/UCGTCBy4tZ-qWEz4hFaHI05w")} />
+                         </View>
+
                     </View>
                     <Text style={[styles.about, { textAlign: "center", paddingHorizontal: 20, color: COLORS.primary }]} onPress={() => handleUrlPress("https://www.eleltech.com/dawit-ekub-terms-conditions.html")}>
                          {"የአጠቃቀም ደንቦች እና ሁኔታዎች (Terms and Conditions of Use)"}
                     </Text>
+
+                    <View style={{ backgroundColor: COLORS.gray, borderRadius: 12, marginVertical: 20 }}>
+                         <Text style={[styles.smallText, { marginTop: 10, textAlign: "center" }]}>
+                              {"ይህን መተግበሪያ ድንገት በሞት ለተለየን ወንድማች መታሰቢያ ይሆን ዘንድ ዳዊት እቁብ ብለን ሰይመናል።"}
+                         </Text>
+                         <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: "#acbbc2", margin: 8, borderRadius: 10, gap: 10, padding: 5 }}>
+                              <Avatar
+                                   rounded
+                                   size={60}
+                                   source={require("../../assets/images/dawit2.webp")}
+                              />
+                              <View>
+                                   <Text style={styles.smallText}>ዳዊት ዘርጋባቸው ዘውዴ</Text>
+                                   <Text style={{ fontSize: 14 }}>ከ 1997 - ሚያዝያ 19/2017 ዓ.ም</Text>
+                              </View>
+                         </View>
+                    </View>
+
                     <View style={{ alignItems: "center", justifyContent: "center", marginBottom: 50 }}>
-                         <Text style={styles.smallText}>{"Developed by Kalkidan Asnake"}</Text>
+                         <Text style={styles.smallText}>{"Developer: Kalkidan Asnake"}</Text>
                          <Text style={styles.smallText}>
                               &copy; {new Date().getFullYear() + " Eleltech Systems. All rights reserved."}
                          </Text>

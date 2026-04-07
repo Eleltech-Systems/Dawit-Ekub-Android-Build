@@ -358,15 +358,17 @@ export default function UpdateEkubMember({ route, navigation }) {
                               </View>
                          </View>
 
-                         {isValid === true ?
-                              (<TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary }]}>
-                                   <Text style={styles.submitButtonsText}>{"ያስተካክሉ"}</Text>
-                              </TouchableOpacity>)
-                              :
-                              (<Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
-                                   <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ያስተካክሉ"}</Text>
-                              </Pressable>)
-                         }
+                         <View style={{ marginBottom: 50 }}>
+                              {isValid === true ?
+                                   (<TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary }]}>
+                                        <Text style={styles.submitButtonsText}>{"ያስተካክሉ"}</Text>
+                                   </TouchableOpacity>)
+                                   :
+                                   (<Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
+                                        <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ያስተካክሉ"}</Text>
+                                   </Pressable>)
+                              }
+                         </View>
                     </ScrollView>
                </KeyboardAvoidingView>
           </>

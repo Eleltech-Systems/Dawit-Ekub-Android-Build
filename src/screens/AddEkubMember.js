@@ -354,15 +354,17 @@ export default function AddEkubMember({ route, navigation }) {
                               </View>
                          </View>
 
-                         {isValid === true ?
-                              (<TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary }]}>
-                                   <Text style={styles.submitButtonsText}>{"ይመዝግቡ"}</Text>
-                              </TouchableOpacity>)
-                              :
-                              (<Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
-                                   <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ይመዝግቡ"}</Text>
-                              </Pressable>)
-                         }
+                         <View style={{ marginBottom: 50 }}>
+                              {isValid === true ?
+                                   (<TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary }]}>
+                                        <Text style={styles.submitButtonsText}>{"ይመዝግቡ"}</Text>
+                                   </TouchableOpacity>)
+                                   :
+                                   (<Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
+                                        <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ይመዝግቡ"}</Text>
+                                   </Pressable>)
+                              }
+                         </View>
                     </ScrollView>
                </KeyboardAvoidingView>
           </>

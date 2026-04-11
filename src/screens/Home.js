@@ -213,7 +213,7 @@ export default function Home({ navigation }) {
 
      return (
           <ScrollView>
-               <View style={{ backgroundColor: COLORS.secondary, position: "relative", height: 460 }}>
+               <View style={{ backgroundColor: COLORS.secondary, position: "relative", height: 550 }}>
                     <View style={[styles.headerContainer, { backgroundColor: "transparent" }]}>
                          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
                               <MaterialIcons name="menu" size={22} color={COLORS.darkText} />

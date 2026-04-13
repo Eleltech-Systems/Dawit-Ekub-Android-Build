@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity, Pressable, ScrollView, ActivityIndicator, AppState, Linking } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Entypo, FontAwesome6, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { AntDesign, Entypo, FontAwesome6, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from '@react-navigation/native';
 import { deleteEkub, initDB, selectAllEkub } from '../database/ekubDB';
@@ -126,34 +126,49 @@ export default function Home({ navigation }) {
      const showEkubList = () => {
           return ekubLists.map((item, index) => {
                return (
-                    <View key={index} style={{ backgroundColor: COLORS.secondary, margin: 20, borderRadius: 12, paddingLeft: 14, paddingRight: 10, paddingVertical: 8, }}>
-                         <TouchableOpacity onPress={() => navigation.navigate("Ekub", { ekubId: item.id })}
-                              style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                              <View style={{ width: "92%" }}>
-                                   <Text style={{ fontWeight: "500", color: COLORS.primary, fontSize: 18, }}>{item.ekubName} {"-"} <Text style={styles.mediumText}>{item.ekubType}</Text></Text>
-                                   <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-                                        <Text style={styles.smallText}>{"መደብ"}</Text>
-                                        <MaterialCommunityIcons name="approximately-equal" size={18} color={COLORS.darkText} />
-                                        <Text style={styles.smallText}>{formatCurrency(item.medebAmount)}</Text>
-                                        <Entypo name="arrow-long-right" size={16} color={COLORS.primary} />
-                                        <Text style={styles.smallText}>{"ደራሽ"}</Text>
-                                        <MaterialCommunityIcons name="approximately-equal" size={18} color={COLORS.darkText} />
-                                        <Text style={styles.smallText}>{formatCurrency(item.medebAmount * item.duration)}</Text>
-                                   </View>
-                                   <Text style={styles.smallText}>{"ከ "}<Text style={{ color: COLORS.primary }}>{item.startDate}</Text>{"  እስከ  "}<Text style={{ color: COLORS.primary }}>{item.endDate}</Text></Text>
+                    <View key={index} style={{ backgroundColor: COLORS.secondary, marginHorizontal: 16, marginVertical: 30, borderRadius: 12 }}>
+                         <View style={{ backgroundColor: "#82b4a6", alignItems: 'center', borderTopRightRadius: 12, borderTopLeftRadius: 12, padding: 5 }}>
+                              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingHorizontal: 10 }}>
+                                   <TouchableOpacity onPress={() => (setVisibleForDelete(true), setEkubIdToDelete(item.id))}>
+                                        <FontAwesome6 name="trash" size={16} color={COLORS.primary} />
+                                   </TouchableOpacity>
+                                   <Text style={styles.mediumText}>{item.ekubName} {"-"} <Text style={styles.mediumText}>{item.ekubType}</Text></Text>
+                                   <TouchableOpacity onPress={() => navigation.navigate("UpdateEkub", { ekubId: item.id })}>
+                                        <AntDesign name="edit" size={18} color={COLORS.primary} />
+                                   </TouchableOpacity>
                               </View>
-                              <Pressable onPress={() => toggleMenu(index)}>
-                                   {visibleMenuIndex === index ? (<MaterialCommunityIcons name="close" size={20} color="black" />) :
-                                        (<Ionicons name="chevron-down" size={20} color="black" />)}
-                              </Pressable>
+                              <Text style={styles.smallText}>{"ከ "}<Text style={{ color: COLORS.primary }}>{item.startDate}</Text>{"  እስከ  "}<Text style={{ color: COLORS.primary }}>{item.endDate}</Text></Text>
+                         </View>
+                         <View style={{ padding: 20 }}>
+                              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 160 }}>
+                                        <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                        <Text style={styles.smallText}>በሙሉ መደብ ደራሽ</Text>
+                                   </View>
+                                   <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
+                                   <Text style={[styles.smallText, { marginLeft: 14 }]}>{formatCurrency(item.medebAmount * item.duration)}</Text>
+                              </View>
+                              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 160 }}>
+                                        <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                        <Text style={styles.smallText}>በግማሽ መደብ ደራሽ</Text>
+                                   </View>
+                                   <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
+                                   <Text style={[styles.smallText, { marginLeft: 14 }]}>{formatCurrency(item.medebAmount / 2 * item.duration)}</Text>
+                              </View>
+                              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 160 }}>
+                                        <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                        <Text style={styles.smallText}>በእሩብ መደብ ደራሽ</Text>
+                                   </View>
+                                   <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
+                                   <Text style={[styles.smallText, { marginLeft: 14 }]}>{formatCurrency(item.medebAmount / 4 * item.duration)}</Text>
+                              </View>
+                         </View>
+
+                         <TouchableOpacity onPress={() => navigation.navigate("Ekub", { ekubId: item.id })} style={{ backgroundColor: COLORS.primary, margin: 10, padding: 6, borderRadius: 8, alignItems: 'center' }}>
+                              <Text style={[styles.smallText, { color: COLORS.secondary }]}>ይቀጥሉ</Text>
                          </TouchableOpacity>
-                         {visibleMenuIndex === index && (
-                              <TouchableOpacity onPress={() => (setVisibleForDelete(true), setEkubIdToDelete(item.id))}
-                                   style={[styles.lightButtons, { alignSelf: 'flex-end', paddingVertical: 3 }]}>
-                                   <Text style={styles.smallText}>{"ይሰርዙ"}</Text>
-                                   <FontAwesome6 name="trash" size={16} color={COLORS.primary} />
-                              </TouchableOpacity>
-                         )}
 
                          <View style={styles.modalContainer}>
                               <ModalPopup visible={visibleForDelete}>

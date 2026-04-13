@@ -165,32 +165,47 @@ export default function Ekub({ route, navigation }) {
                                    </Text>
                               </View>
 
-                              <View style={{ width: "100%", borderWidth: 0.3, borderColor: "green", backgroundColor: "white", marginTop: 10, marginBottom: 30, borderRadius: 20, alignSelf: "center", paddingHorizontal: 10, paddingVertical: 10, }}>
-                                   <View style={{ backgroundColor: COLORS.secondary, padding: 10, borderRadius: 10 }}>
-                                        <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallText, { width: "34%", }]}>{"ጠቅላላ አባላት"}</Text>
+                              <View style={{ width: "100%", borderWidth: 0.3, borderColor: "green", backgroundColor: "white", marginBottom: 30, borderRadius: 20, alignSelf: "center", paddingHorizontal: 10, paddingVertical: 10, }}>
+                                   <View style={{ backgroundColor: "#82b4a6", padding: 10, borderRadius: 10 }}>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 142 }}>
+                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                  <Text style={styles.smallText}>{"ጠቅላላ አባላት"}</Text>
+                                             </View>
                                              <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                             <Text style={[styles.smallText, { marginLeft: 10 }]}>{ekubMember.length}</Text>
+                                             <Text style={[styles.smallText, { marginLeft: 14 }]}>{ekubMember.length}</Text>
                                         </View>
-                                        <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallText, { width: "34%", }]}>{"የእጣው ብዛት"}</Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 142 }}>
+                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                  <Text style={styles.smallText}>{"የእጣው ብዛት"}</Text>
+                                             </View>
                                              <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                             <Text style={[styles.smallText, { marginLeft: 10 }]}>{loteryNumber.length}</Text>
+                                             <Text style={[styles.smallText, { marginLeft: 14 }]}>{loteryNumber.length}</Text>
                                         </View>
-                                        <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallText, { width: "34%", }]}>{"ጠቅላላ የተሰበሰበ"}</Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 142 }}>
+                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                  <Text style={styles.smallText}>{"ጠቅላላ የተሰበሰበ"}</Text>
+                                             </View>
                                              <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                             <Text style={[styles.smallText, { marginLeft: 10 }]}>{sumOfAllEkubMemberPayment === null ? (0) : formatCurrency(sumOfAllEkubMemberPayment)}</Text>
+                                             <Text style={[styles.smallText, { marginLeft: 14 }]}>{sumOfAllEkubMemberPayment === null ? (0) : formatCurrency(sumOfAllEkubMemberPayment)}</Text>
                                         </View>
-                                        <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallText, { width: "34%", }]}>{"የተፈጸመ ክፍያ"}</Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 142 }}>
+                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                  <Text style={styles.smallText}>{"የተፈጸመ ክፍያ"}</Text>
+                                             </View>
                                              <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                             <Text style={[styles.smallText, { marginLeft: 10 }]}>{sumOfAllEkubRecipients === null ? (0) : formatCurrency(sumOfAllEkubRecipients)}</Text>
+                                             <Text style={[styles.smallText, { marginLeft: 14 }]}>{sumOfAllEkubRecipients === null ? (0) : formatCurrency(sumOfAllEkubRecipients)}</Text>
                                         </View>
-                                        <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallText, { width: "34%", }]}>{"ቀሪ ብር መጠን"}</Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 142 }}>
+                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                  <Text style={styles.smallText}>{"ቀሪ ብር መጠን"}</Text>
+                                             </View>
                                              <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                             <Text style={[styles.smallText, { marginLeft: 10, }]}>{formatCurrency(sumOfAllEkubMemberPayment - sumOfAllEkubRecipients)}</Text>
+                                             <Text style={[styles.smallText, { marginLeft: 14 }]}>{formatCurrency(sumOfAllEkubMemberPayment - sumOfAllEkubRecipients)}</Text>
                                         </View>
                                    </View>
 

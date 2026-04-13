@@ -53,18 +53,22 @@ export default function CustomDrawer(props) {
                          icon={() => <Ionicons name="exit-outline" size={24} color={COLORS.primary} />}
                          onPress={() => BackHandler.exitApp()}
                     />
-                    <View style={{ borderWidth: 1, borderColor: COLORS.secondary, borderRadius: 10, padding: 20, gap: 20, marginTop: 80 }}>
-                         <Text style={[styles.xSmallText, { textAlign: "justify" }]}>
-                              {"ሙሉ የእቁብዎን ምትክ መረጃ ለማስቀመጥ እና መልሰው ለመጠቀም የሚያስችልዎትን ተከታዮቹን ሁለት ቁልፎች ይጠቀሙ፡፡"}
-                         </Text>
-
+                    <View style={{ borderWidth: 1, borderColor: COLORS.secondary, borderRadius: 10, padding: 20, gap: 20, marginTop: 30 }}>
                          {ekubLists && ekubLists.length > 0 &&
-                              <TouchableOpacity disabled={!ekubLists} onPress={() => backupDatabase()} style={[styles.lightButtons, { gap: 14 }]}>
-                                   <MaterialCommunityIcons name="file-download" size={22} color={COLORS.primary} />
-                                   <Text style={styles.smallText}>{"ምትክ መረጃ ያስቀምጡ"}</Text>
-                              </TouchableOpacity>
+                              <>
+                                   <Text style={[styles.xSmallText, { textAlign: "justify" }]}>
+                                        {"ሙሉ የእቁብዎን ምትክ መረጃ በስልክዎ የፈለጉት ቦታ ላይ ለማስቀመጥ ይህን ቁልፍ ይጠቀሙ፡፡"}
+                                   </Text>
+                                   <TouchableOpacity disabled={!ekubLists} onPress={() => backupDatabase()} style={[styles.lightButtons, { gap: 14 }]}>
+                                        <MaterialCommunityIcons name="file-download" size={22} color={COLORS.primary} />
+                                        <Text style={styles.smallText}>{"ምትክ መረጃ ያስቀምጡ"}</Text>
+                                   </TouchableOpacity>
+                              </>
                          }
 
+                         <Text style={[styles.xSmallText, { textAlign: "justify" }]}>
+                              {"ያስቀመጡትን ሙሉ የእቁብዎን ምትክ መረጃ መልሰው ለመጠቀም የሚያስችልዎትን ይህን ቁልፍ ይጠቀሙ፡፡"}
+                         </Text>
                          <TouchableOpacity onPress={() => restoreDatabase()} style={[styles.lightButtons, { gap: 14 }]}>
                               <MaterialCommunityIcons name="backup-restore" size={22} color={COLORS.primary} />
                               <Text style={styles.smallText}>{"ምትክ  መረጃ  ይመልሱ"}</Text>

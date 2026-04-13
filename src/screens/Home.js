@@ -1,6 +1,6 @@
-import { View, Text, Image, TouchableOpacity, Pressable, ScrollView, ActivityIndicator, AppState, Linking } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView, ActivityIndicator, AppState, Linking } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
-import { AntDesign, Entypo, FontAwesome6, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Entypo, FontAwesome6, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from '@react-navigation/native';
 import { deleteEkub, initDB, selectAllEkub } from '../database/ekubDB';
@@ -129,12 +129,10 @@ export default function Home({ navigation }) {
                     <View key={index} style={{ backgroundColor: COLORS.secondary, marginHorizontal: 16, marginVertical: 30, borderRadius: 12 }}>
                          <View style={{ backgroundColor: "#82b4a6", alignItems: 'center', borderTopRightRadius: 12, borderTopLeftRadius: 12, padding: 5 }}>
                               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingHorizontal: 10 }}>
+                                   <Text></Text>
+                                   <Text style={styles.mediumText}>{item.ekubName} {"-"} <Text style={styles.mediumText}>{item.ekubType}</Text></Text>
                                    <TouchableOpacity onPress={() => (setVisibleForDelete(true), setEkubIdToDelete(item.id))}>
                                         <FontAwesome6 name="trash" size={16} color={COLORS.primary} />
-                                   </TouchableOpacity>
-                                   <Text style={styles.mediumText}>{item.ekubName} {"-"} <Text style={styles.mediumText}>{item.ekubType}</Text></Text>
-                                   <TouchableOpacity onPress={() => navigation.navigate("UpdateEkub", { ekubId: item.id })}>
-                                        <AntDesign name="edit" size={18} color={COLORS.primary} />
                                    </TouchableOpacity>
                               </View>
                               <Text style={styles.smallText}>{"ከ "}<Text style={{ color: COLORS.primary }}>{item.startDate}</Text>{"  እስከ  "}<Text style={{ color: COLORS.primary }}>{item.endDate}</Text></Text>
@@ -166,7 +164,7 @@ export default function Home({ navigation }) {
                               </View>
                          </View>
 
-                         <TouchableOpacity onPress={() => navigation.navigate("Ekub", { ekubId: item.id })} style={{ backgroundColor: COLORS.primary, margin: 10, padding: 6, borderRadius: 8, alignItems: 'center' }}>
+                         <TouchableOpacity onPress={() => navigation.navigate("Ekub", { ekubId: item.id })} style={{ backgroundColor: COLORS.primary, marginHorizontal: 20, marginBottom: 20, padding: 8, borderRadius: 8, alignItems: 'center' }}>
                               <Text style={[styles.smallText, { color: COLORS.secondary }]}>ይቀጥሉ</Text>
                          </TouchableOpacity>
 

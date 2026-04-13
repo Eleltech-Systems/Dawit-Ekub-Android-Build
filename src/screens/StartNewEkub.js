@@ -116,154 +116,160 @@ export default function StartNewEkub({ navigation }) {
                     keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust offset if needed
                >
                     <ScrollView>
-                         {/* Title and Short Description */}
-                         <View style={{ marginHorizontal: 40, marginTop: 20, overflow: "hidden", gap: 20 }}>
-                              <Text style={[styles.smallText, { color: COLORS.primary, textAlign: "justify" }]}>
-                                   {"እቁብዎን ከመጀመርዎ በፊት የመደብ ብር መጠን እና የእቁብዎን የጊዜ ቆይታ ቀድመው መወሰን ይገባዎታል። እጣ የሚጥሉበትን ጊዜ በአባልዎ ብዛት ላይ ተመስርተው ይወስናሉ።"}
-                              </Text>
+
+                         <View style={{ alignItems: 'center', marginTop: 30 }}>
+                              <Image source={require("../../assets/images/money-bag2.webp")} style={{ marginLeft: 10, height: 90, width: 90 }} />
                          </View>
-
-                         {/* Input Forms */}
-                         <View style={styles.allInputContainer}>
-                              <View style={styles.inputContainer}>
-                                   <Text style={styles.mediumText}>{"የእቁብ ስም፡"}</Text>
-                                   <Controller
-                                        control={control}
-                                        rules={{ required: true, }}
-                                        name="ekubName"
-                                        render={({ field: { onChange, value } }) =>
-                                        (
-                                             <View style={styles.inputBox}>
-                                                  <TextInput
-                                                       style={styles.inputText}
-                                                       value={value}
-                                                       placeholder="ምሳሌ፡ ዳዊት እቁብ"
-                                                       placeholderTextColor={COLORS.gray2}
-                                                       onChangeText={(text) => {
-                                                            onChange(text); // Update react-hook-form state
-                                                            setEkubName(text); // Update local state
-                                                       }}
-                                                  />
-                                             </View>
-                                        )}
-                                   />
-                                   {errors.ekubName && <Text style={styles.inputErrorText}>{errors.ekubName.message}</Text>}
+                         <View style={[styles.allInputContainer, { padding: 0 }]}>
+                              {/* Title and Short Description */}
+                              <View style={{ borderTopLeftRadius: 14, borderTopRightRadius: 14, backgroundColor: COLORS.primary, padding: 10 }}>
+                                   <Text style={[styles.smallText, { textAlign: "justify", color: COLORS.offwhite }]}>
+                                        {"እቁብዎን ከመጀመርዎ በፊት የመደብ ብር መጠን እና የእቁብዎን የጊዜ ቆይታ ቀድመው መወሰን ይገባዎታል። እጣ የሚጥሉበትን ጊዜ በአባልዎ ብዛት ላይ ተመስርተው ይወስናሉ።"}
+                                   </Text>
                               </View>
 
-                              <View style={styles.inputContainer}>
-                                   <Text style={styles.mediumText}>{"የእቁብ አይነት፡"}</Text>
-                                   <Controller
-                                        control={control}
-                                        rules={{ required: "እባክዎ የእቁብ አይነት ይምረጡ", }}
-                                        name="ekubType"
-                                        render={({ field: { onChange, value } }) =>
-                                        (
-                                             <SelectList
-                                                  data={data}
-                                                  arrowicon={<FontAwesome name="chevron-down" size={12} color={"black"} />}
-                                                  search={false}
-                                                  placeholder={value === '' && "የእቁብ አይነት ይምረጡ"}
-                                                  boxStyles={styles.inputSelectListBoxStyle}
-                                                  inputStyles={styles.inputSelectListInputStyle}
-                                                  dropdownStyles={styles.inputSelectListDropdownStyles}
-                                                  dropdownTextStyles={styles.smallText}
-                                                  setSelected={(selectedValue) => {
-                                                       onChange(selectedValue);
-                                                       setEkubType(selectedValue);
-                                                  }}
-                                             />
-                                        )}
-                                   />
-                                   {errors.ekubType && <Text style={styles.inputErrorText}>{errors.ekubType.message}</Text>}
-                              </View>
-
-                              <View style={styles.inputContainer}>
-                                   <Text style={styles.mediumText}>{"መደብ ብር፡"}</Text>
-                                   <Controller
-                                        control={control}
-                                        rules={{ required: true, }} name="medebAmount"
-                                        render={({ field: { onChange, value } }) =>
-                                        (
-                                             <View style={styles.inputBox}>
-                                                  <TextInput
-                                                       keyboardType="numeric"
-                                                       style={styles.inputText}
-                                                       value={value}
-                                                       onChangeText={(num) => {
-                                                            onChange(num);
-                                                            setMedebAm(num);
-                                                       }}
-                                                  />
-                                             </View>
-                                        )}
-                                   />
-                                   {errors.medebAmount && <Text style={styles.inputErrorText}>{errors.medebAmount.message}</Text>}
-                              </View>
-
-                              <View style={styles.inputContainer}>
-                                   <Text style={styles.mediumText}>{"የሚጀመርበት ቀን፡"}</Text>
-                                   <Controller
-                                        control={control}
-                                        rules={{ required: "የሚጀምሩበትን ቀን ይምረጡ" }}
-                                        name="selectedDate"
-                                        render={({ field: { value, onChange } }) => (
-                                             <>
-                                                  <View style={[styles.inputBox, { flexDirection: "row", justifyContent: "space-between" }]}>
+                              {/* Input Forms */}
+                              <View style={{ padding: 20 }}>
+                                   <View style={styles.inputContainer}>
+                                        <Text style={styles.mediumText}>{"የእቁብ ስም፡"}</Text>
+                                        <Controller
+                                             control={control}
+                                             rules={{ required: true, }}
+                                             name="ekubName"
+                                             render={({ field: { onChange, value } }) =>
+                                             (
+                                                  <View style={styles.inputBox}>
                                                        <TextInput
-                                                            editable={false}
-                                                            style={[styles.inputText, { width: '85%' }]}
+                                                            style={styles.inputText}
                                                             value={value}
-                                                            onChangeText={onChange}
-                                                       />
-                                                       <Pressable onPress={() => setShow(!show)}>
-                                                            <Ionicons name="calendar" size={24} color={show == false ? "grey" : "green"} />
-                                                       </Pressable>
-                                                  </View>
-                                                  {show &&
-                                                       <Calendar
-                                                            // mode={mode}
-                                                            onDatePress={(date) => {
-                                                                 onChange(`${date.ethiopian.date}-${date.ethiopian.month}-${date.ethiopian.year}`),
-                                                                      setStartDat(`${date.ethiopian.date}-${date.ethiopian.month}-${date.ethiopian.year}`),
-                                                                      setShow(!show)
+                                                            placeholder="ምሳሌ፡ ሰላም እቁብ"
+                                                            placeholderTextColor={COLORS.gray2}
+                                                            onChangeText={(text) => {
+                                                                 onChange(text); // Update react-hook-form state
+                                                                 setEkubName(text); // Update local state
                                                             }}
-                                                            onModeChange={(selectedMode) => setMode(selectedMode)}
-                                                            onLanguageChange={(lang) => setLocale(lang)}
-                                                            locale={locale}
                                                        />
-                                                  }
-                                             </>
-                                        )}
-                                   />
-                                   {errors.selectedDate && (<Text style={styles.inputErrorText}>{errors.selectedDate.message}</Text>)}
-                              </View>
+                                                  </View>
+                                             )}
+                                        />
+                                        {errors.ekubName && <Text style={styles.inputErrorText}>{errors.ekubName.message}</Text>}
+                                   </View>
 
-                              <View style={styles.inputContainer}>
-                                   {ekubType === '' && <Text style={styles.mediumText}>{"የሚፈጀው ጊዜ፡"}</Text>}
-                                   {ekubType === 'የቀን' && <Text style={styles.mediumText}>{"የሚፈጀው ቀን፡"}</Text>}
-                                   {ekubType === 'የሳምንት' && <Text style={styles.mediumText}>{"የሚፈጀው ሳምንት፡"}</Text>}
-                                   {ekubType === 'የወር' && <Text style={styles.mediumText}>{"የሚፈጀው ወር፡"}</Text>}
-                                   <Controller
-                                        control={control}
-                                        rules={{ required: true, }}
-                                        name="duration"
-                                        render={({ field: { onChange, value } }) =>
-                                        (
-                                             <View style={styles.inputBox}>
-                                                  <TextInput
-                                                       editable={ekubType !== '' && true}
-                                                       keyboardType="numeric"
-                                                       style={styles.inputText}
-                                                       value={value} onChangeText={(num) => {
-                                                            onChange(num); // Update react-hook-form state
-                                                            setDurashn(num); // Update local state
+                                   <View style={styles.inputContainer}>
+                                        <Text style={styles.mediumText}>{"የእቁብ አይነት፡"}</Text>
+                                        <Controller
+                                             control={control}
+                                             rules={{ required: "እባክዎ የእቁብ አይነት ይምረጡ", }}
+                                             name="ekubType"
+                                             render={({ field: { onChange, value } }) =>
+                                             (
+                                                  <SelectList
+                                                       data={data}
+                                                       arrowicon={<FontAwesome name="chevron-down" size={12} color={"black"} />}
+                                                       search={false}
+                                                       placeholder={value === '' && "የእቁብ አይነት ይምረጡ"}
+                                                       boxStyles={styles.inputSelectListBoxStyle}
+                                                       inputStyles={styles.inputSelectListInputStyle}
+                                                       dropdownStyles={styles.inputSelectListDropdownStyles}
+                                                       dropdownTextStyles={styles.smallText}
+                                                       setSelected={(selectedValue) => {
+                                                            onChange(selectedValue);
+                                                            setEkubType(selectedValue);
                                                        }}
                                                   />
-                                             </View>
+                                             )}
+                                        />
+                                        {errors.ekubType && <Text style={styles.inputErrorText}>{errors.ekubType.message}</Text>}
+                                   </View>
 
-                                        )}
-                                   />
-                                   {errors.duration && <Text style={styles.inputErrorText}>{errors.duration.message}</Text>}
+                                   <View style={styles.inputContainer}>
+                                        <Text style={styles.mediumText}>{"መደብ ብር፡"}</Text>
+                                        <Controller
+                                             control={control}
+                                             rules={{ required: true, }} name="medebAmount"
+                                             render={({ field: { onChange, value } }) =>
+                                             (
+                                                  <View style={styles.inputBox}>
+                                                       <TextInput
+                                                            keyboardType="numeric"
+                                                            style={styles.inputText}
+                                                            value={value}
+                                                            onChangeText={(num) => {
+                                                                 onChange(num);
+                                                                 setMedebAm(num);
+                                                            }}
+                                                       />
+                                                  </View>
+                                             )}
+                                        />
+                                        {errors.medebAmount && <Text style={styles.inputErrorText}>{errors.medebAmount.message}</Text>}
+                                   </View>
+
+                                   <View style={styles.inputContainer}>
+                                        <Text style={styles.mediumText}>{"የሚጀመርበት ቀን፡"}</Text>
+                                        <Controller
+                                             control={control}
+                                             rules={{ required: "የሚጀምሩበትን ቀን ይምረጡ" }}
+                                             name="selectedDate"
+                                             render={({ field: { value, onChange } }) => (
+                                                  <>
+                                                       <View style={[styles.inputBox, { flexDirection: "row", justifyContent: "space-between" }]}>
+                                                            <TextInput
+                                                                 editable={false}
+                                                                 style={[styles.inputText, { width: '85%' }]}
+                                                                 value={value}
+                                                                 onChangeText={onChange}
+                                                            />
+                                                            <Pressable onPress={() => setShow(!show)}>
+                                                                 <Ionicons name="calendar" size={24} color={show == false ? COLORS.primary : "green"} />
+                                                            </Pressable>
+                                                       </View>
+                                                       {show &&
+                                                            <Calendar
+                                                                 // mode={mode}
+                                                                 onDatePress={(date) => {
+                                                                      onChange(`${date.ethiopian.date}-${date.ethiopian.month}-${date.ethiopian.year}`),
+                                                                           setStartDat(`${date.ethiopian.date}-${date.ethiopian.month}-${date.ethiopian.year}`),
+                                                                           setShow(!show)
+                                                                 }}
+                                                                 onModeChange={(selectedMode) => setMode(selectedMode)}
+                                                                 onLanguageChange={(lang) => setLocale(lang)}
+                                                                 locale={locale}
+                                                            />
+                                                       }
+                                                  </>
+                                             )}
+                                        />
+                                        {errors.selectedDate && (<Text style={styles.inputErrorText}>{errors.selectedDate.message}</Text>)}
+                                   </View>
+
+                                   <View style={styles.inputContainer}>
+                                        {ekubType === '' && <Text style={styles.mediumText}></Text>}
+                                        {ekubType === 'የቀን' && <Text style={styles.mediumText}>{"የሚፈጀው ቀን፡"}</Text>}
+                                        {ekubType === 'የሳምንት' && <Text style={styles.mediumText}>{"የሚፈጀው ሳምንት፡"}</Text>}
+                                        {ekubType === 'የወር' && <Text style={styles.mediumText}>{"የሚፈጀው ወር፡"}</Text>}
+                                        <Controller
+                                             control={control}
+                                             rules={{ required: true, }}
+                                             name="duration"
+                                             render={({ field: { onChange, value } }) =>
+                                             (
+                                                  <View style={styles.inputBox}>
+                                                       <TextInput
+                                                            editable={ekubType !== '' && true}
+                                                            keyboardType="numeric"
+                                                            style={styles.inputText}
+                                                            value={value} onChangeText={(num) => {
+                                                                 onChange(num); // Update react-hook-form state
+                                                                 setDurashn(num); // Update local state
+                                                            }}
+                                                       />
+                                                  </View>
+
+                                             )}
+                                        />
+                                        {errors.duration && <Text style={styles.inputErrorText}>{errors.duration.message}</Text>}
+                                   </View>
                               </View>
                          </View>
 
@@ -271,14 +277,15 @@ export default function StartNewEkub({ navigation }) {
                          {isValid === true &&
                               <View style={{ margin: 20 }}>
                                    <View style={{ backgroundColor: "#bdc6df", borderTopLeftRadius: 14, borderTopRightRadius: 14, padding: 12 }}>
-                                        <Text style={[styles.mediumText, { textAlign: "center", color: COLORS.primary }]}>
-                                             {"ባስገቡት መረጃ መሰረት"}
-                                        </Text>
-                                   </View>
-                                   <View style={{ backgroundColor: COLORS.secondary2, paddingLeft: 20, paddingRight: 20, paddingBottom: 10, paddingTop: 10, borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }}>
                                         <Text style={[styles.mediumText, { textAlign: "center", marginVertical: 5, color: COLORS.primary }]}>
                                              {ekubName.trim().replace(/\s+/g, ' ')}
                                         </Text>
+                                        <View style={{ flexDirection: 'row', gap: 10, marginTop: 10, alignItems: 'center' }}>
+                                             <FontAwesome6 name="circle-info" size={16} color={COLORS.primary} />
+                                             <Text style={{ width: '96%', fontSize: 12 }}>በዚህ መረጃ ላይ ተመስርተው እቁብዎን ከመጀመርዎ በፊት መልሰው ማስተካከል ይችላሉ።</Text>
+                                        </View>
+                                   </View>
+                                   <View style={{ backgroundColor: COLORS.secondary2, paddingHorizontal: 20, paddingBottom: 10, paddingTop: 10, borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }}>
                                         <View style={styles.resultContainer}>
                                              <Text style={[styles.smallText, { width: "34%", }]}>{"የእቁብ አይነት፡"}</Text>
                                              <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
@@ -354,10 +361,10 @@ export default function StartNewEkub({ navigation }) {
                          <View style={{ marginBottom: 50 }}>
                               {isValid === true ?
                                    <TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary }]}>
-                                        <Text style={styles.submitButtonsText}>{"ይ ጀ ም ሩ"}</Text>
+                                        <Text style={styles.submitButtonsText}>{"ይጀምሩ"}</Text>
                                    </TouchableOpacity> :
                                    <Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
-                                        <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ይ ጀ ም ሩ"}</Text>
+                                        <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ይጀምሩ"}</Text>
                                    </Pressable>
                               }
                          </View>

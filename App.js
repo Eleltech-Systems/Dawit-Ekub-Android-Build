@@ -23,7 +23,6 @@ import ListOfEkubRecipients from './src/screens/ListOfEkubRecipients';
 import { COLORS } from './src/constants/theme';
 import { StatusBar } from 'expo-status-bar';
 import styles from './src/styles/ComponentStyles';
-import UpdateEkub from './src/screens/UpdateEkub';
 
 
 // This app uses both navigations, the Stack Navigations and the Drawer Navigations togather.
@@ -97,7 +96,6 @@ export default function App() {
         <Stack.Screen name="EkubMember" component={EkubMember} />
         <Stack.Screen name="EkubMemberLotNumber" component={EkubMemberLotNumber} />
         <Stack.Screen name="AddEkubMember" component={AddEkubMember} />
-        <Stack.Screen name="UpdateEkub" component={UpdateEkub} />
         <Stack.Screen name="UpdateEkubMember" component={UpdateEkubMember} />
         <Stack.Screen name="AddEkubRecipients" component={AddEkubRecipients} />
         <Stack.Screen name="ListOfEkubRecipients" component={ListOfEkubRecipients} />

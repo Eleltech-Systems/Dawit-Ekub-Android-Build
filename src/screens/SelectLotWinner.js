@@ -147,7 +147,7 @@ export default function LotterySelector({ route, navigation }) {
                               <View style={{ width: "80%" }}>
                                    <Text style={styles.mediumText}>{item.fullName}</Text>
                                    <View style={styles.memberInfoContainer}>
-                                        <Text style={styles.smallText}>
+                                        <Text style={styles.smallTextAm}>
                                              {memberByLotNumber.length === 1 && "ሙሉ መደብ ደራሽ፡"}
                                              {memberByLotNumber.length === 2 && "ግማሽ መደብ ደራሽ፡"}
                                              {memberByLotNumber.length === 4 && "እሩብ መደብ ደራሽ፡"}
@@ -172,7 +172,7 @@ export default function LotterySelector({ route, navigation }) {
                     <Pressable onPress={() => navigation.goBack()} disabled={isRotating}>
                          <FontAwesome6 name="arrow-left" size={20} color={COLORS.offwhite} />
                     </Pressable>
-                    <Text style={styles.headerText}>{"እጣ ማውጫ"}</Text>
+                    <Text style={styles.headerTextAm}>እጣ ማውጫ</Text>
                     <Pressable onPress={() => setSelectedNumber(null)} disabled={isRotating}>
                          <MaterialIcons name="refresh" size={22} color={COLORS.offwhite} />
                     </Pressable>
@@ -188,7 +188,7 @@ export default function LotterySelector({ route, navigation }) {
                          </Animated.View>
                          {selectedNumber === null &&
                               <TouchableOpacity onPress={rotateAnimation} disabled={isRotating} style={styles.lightButtons}>
-                                   <Text style={styles.mediumText}>{"ያስጀምሩ"}</Text>
+                                   <Text style={styles.mediumTextAm}>ያስጀምሩ</Text>
                                    <FontAwesome6 name="play" size={20} color={COLORS.primary} />
                               </TouchableOpacity>
                          }
@@ -202,7 +202,7 @@ export default function LotterySelector({ route, navigation }) {
                                                        style={{ height: 80, width: 70, marginVertical: 5 }}
                                                   />
                                                   <View style={[styles.resultContainer, { gap: 5 }]}>
-                                                       <Text style={styles.mediumText}>{"የወጣው እጣ ቁጥር፡ "}</Text>
+                                                       <Text style={styles.mediumText}>የወጣው እጣ ቁጥር፡ </Text>
                                                        {memberByLotNumber.length === 1 &&
                                                             <View style={[styles.lotBox, { backgroundColor: COLORS.lotFull }]}>
                                                                  <Text style={styles.lotNum}>{selectedNumber}</Text>
@@ -226,22 +226,22 @@ export default function LotterySelector({ route, navigation }) {
                                              <View style={styles.contentContainer}>
                                                   <View style={{ marginHorizontal: 10 }}>{showEkubMemberWithLot()}</View>
                                                   <View style={{ marginTop: 60, marginHorizontal: 40 }}>
-                                                       <Text style={[styles.smallText, { textAlign: "center", color: COLORS.primary }]}>
-                                                            {"አሸናፊውን እጣ ቁጥር መመዝገብ እና ከእጣ ዝርዝር ማውጣት ይፈልጋሉ?"}
+                                                       <Text style={[styles.smallTextAm, { textAlign: "center", color: COLORS.primary }]}>
+                                                            አሸናፊውን እጣ ቁጥር መመዝገብ እና ከእጣ ዝርዝር ማውጣት ይፈልጋሉ?
                                                        </Text>
                                                        <View style={[styles.resultContainer, { gap: 10, justifyContent: "space-around", marginVertical: 30, width: "70%", alignSelf: "center" }]}>
                                                             <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.lightButtons, { paddingVertical: 2, width: "30%" }]}>
-                                                                 <Text style={{ fontWeight: "500" }}>{"አይ"}</Text>
+                                                                 <Text style={styles.smallTextAm}>አይ</Text>
                                                             </TouchableOpacity>
                                                             <TouchableOpacity onPress={() => onHandleYes()} style={[styles.lightButtons, { paddingVertical: 2, width: "30%" }]}>
-                                                                 <Text style={{ fontWeight: "500" }}>{"አዎን"}</Text>
+                                                                 <Text style={styles.smallTextAm}>አዎን</Text>
                                                             </TouchableOpacity>
                                                        </View>
                                                   </View>
                                              </View>
 
                                              {message !== '' &&
-                                                  <Text style={{ marginVertical: 40, marginHorizontal: 20, fontSize: 14, color: "red", textAlign: "center" }}>
+                                                  <Text style={[styles.errorTextAm, { marginVertical: 40, marginHorizontal: 20, textAlign: "center" }]}>
                                                        {message}
                                                   </Text>
                                              }

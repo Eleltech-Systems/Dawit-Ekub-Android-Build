@@ -56,19 +56,22 @@ export default function ListOfEkubRecipients({ route, navigation }) {
           return allEkubRecipients.map((item, index, array) => {
                return (
                     <View key={index} style={{ marginHorizontal: 10, marginVertical: 5, gap: 10 }}>
-                         <Text style={{ color: COLORS.primary }}>{"ቀን፡ "}{item.dateOfPayment}</Text>
+                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                              <Text style={[styles.smallTextAm, { color: COLORS.primary }]}>ቀን፡ </Text>
+                              <Text style={{ color: COLORS.primary }}>{item.dateOfPayment}</Text>
+                         </View>
 
                          <View style={{ backgroundColor: COLORS.secondary, marginBottom: 20, borderRadius: 8 }}>
                               <View style={[styles.resultContainer, { marginHorizontal: 8, marginVertical: 5 }]}>
                                    <View style={styles.orderedNumBox}>
-                                        <Text style={[styles.largText, { color: COLORS.offwhite }]}>{(array.length - 1) - (index - 1)}{"ኛ"}</Text>
+                                        <Text style={[styles.largTextAm, { color: COLORS.offwhite }]}>{(array.length - 1) - (index - 1)}{"ኛ"}</Text>
                                    </View>
 
                                    <View style={{ width: "84%", flexDirection: "row", justifyContent: "space-between" }}>
                                         <View style={{ width: "90%" }}>
                                              <Text style={styles.mediumText}>{item.takerName}</Text>
                                              <View style={[styles.resultContainer, { gap: 12 }]}>
-                                                  <Text style={styles.smallText}>{"የብር መጠን"}</Text>
+                                                  <Text style={styles.smallTextAm}>የብር መጠን</Text>
                                                   <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
                                                   <Text style={[styles.smallText, { width: "58%" }]}>{formatCurrency(item.moneyAmount)}</Text>
                                              </View>
@@ -94,7 +97,7 @@ export default function ListOfEkubRecipients({ route, navigation }) {
                                                        :
                                                        <TouchableOpacity onPress={() => handleDelete(item.id)}
                                                             style={[styles.lightButtons, { paddingVertical: 2 }]}>
-                                                            <Text style={styles.smallText}>{"ይሰርዙ"}</Text>
+                                                            <Text style={styles.smallTextAm}>ይሰርዙ</Text>
                                                             <FontAwesome6 name="trash" size={16} color={COLORS.primary} />
                                                        </TouchableOpacity>
                                                   }
@@ -114,7 +117,7 @@ export default function ListOfEkubRecipients({ route, navigation }) {
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                          <FontAwesome6 name="arrow-left" size={20} color={COLORS.offwhite} />
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>{"የእቁብ ብር የደረሳቸው"}</Text>
+                    <Text style={styles.headerTextAm}>የእቁብ ብር የደረሳቸው</Text>
                     <Text></Text>
                </View>
                {isLoading === true ?
@@ -128,8 +131,8 @@ export default function ListOfEkubRecipients({ route, navigation }) {
                                    {allEkubRecipients.length === 0 ?
                                         <View style={{ margin: 50, alignItems: "center", paddingVertical: 100 }}>
                                              <Image source={require("../../assets/images/nofile.webp")} style={{ height: 160, width: 160, alignSelf: "center" }} />
-                                             <Text style={[styles.smallText, { marginTop: 20 }]}>
-                                                  {"ምንም የእቁብ ብር ክፍያ አልፈፀሙም!"}
+                                             <Text style={[styles.smallTextAm, { marginTop: 20 }]}>
+                                                  ምንም የእቁብ ብር ክፍያ አልፈፀሙም!
                                              </Text>
                                         </View>
                                         :

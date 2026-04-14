@@ -132,7 +132,7 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                return (<View key={index} style={{ width: "30%", }}>
                     <View style={{ borderWidth: 1, borderColor: COLORS.offwhite, borderRadius: 10, marginVertical: 10, alignItems: "center" }}>
                          <View style={[styles.resultContainer, { gap: 10 }]}>
-                              <Text style={[styles.xSmallText, { color: COLORS.primary }]}>{"የ"}{item.medebType}</Text>
+                              <Text style={[styles.xSmallTextAm, { color: COLORS.primary }]}>{"የ"}{item.medebType}</Text>
                               <Pressable onPress={() => toggleMenu(index)}>
                                    {visibleMenuIndex === index ?
                                         (<Ionicons name="close" size={16} color="black" />)
@@ -162,7 +162,7 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                     {visibleMenuIndex === index && (
                          <TouchableOpacity onPress={() => handleDeleteLotNumber(item.id, item.lotNumber)}
                               style={[styles.lightButtons, { paddingVertical: 2, gap: 10, marginBottom: 6 }]}>
-                              <Text style={{ fontSize: 12 }}>{"ይሰርዙ"}</Text>
+                              <Text style={styles.xSmallTextAm}>ይሰርዙ</Text>
                               <FontAwesome6 name="trash" size={14} color="green" />
                          </TouchableOpacity>
                     )}
@@ -190,7 +190,7 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                          <FontAwesome6 name="arrow-left" size={20} color={COLORS.offwhite} />
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>{"እጣ ቁጥር ይሰይሙ"}</Text>
+                    <Text style={styles.headerTextAm}>እጣ ቁጥር ይሰይሙ</Text>
                     <TouchableOpacity onPress={() => fetchAllData()}>
                          <MaterialIcons name="refresh" size={22} color={COLORS.offwhite} />
                     </TouchableOpacity>
@@ -205,10 +205,10 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                          keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust offset if needed
                     >
                          <ScrollView>
-                              <Text style={[styles.smallText, { marginTop: 10, marginHorizontal: 16 }]}>{"ጠቅላላ እጣ ዝርዝር"}</Text>
+                              <Text style={[styles.smallTextAm, { marginTop: 10, marginHorizontal: 16 }]}>ጠቅላላ እጣ ዝርዝር</Text>
                               {allMemberLotNumber.length === 0 ?
                                    <View style={styles.lotCont}>
-                                        <Text style={styles.smallText}>{"ምንም እጣ የለም"}</Text>
+                                        <Text style={styles.smallTextAm}>ምንም እጣ የለም</Text>
                                    </View>
                                    :
                                    <View style={styles.lotCont}>
@@ -219,10 +219,10 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                               <View style={{ backgroundColor: COLORS.secondary, marginTop: 30, borderRadius: 10, marginHorizontal: 16, paddingHorizontal: 10 }}>
                                    <View style={{ paddingVertical: 5 }}>
                                         <Text style={styles.mediumText}>{ekubMember.fullName}</Text>
-                                        <Text style={styles.smallText}>{"ክፍያ መጠን  = "}{formatCurrency(ekubMember.paymentAmount)}</Text>
+                                        <Text style={styles.smallTextAm}>{"ክፍያ መጠን  = "}{formatCurrency(ekubMember.paymentAmount)}</Text>
                                    </View>
                                    {memberLotNumber.length === 0 ?
-                                        <Text style={{ alignSelf: "center", marginVertical: 40, fontSize: 12, fontWeight: "500", color: "green" }}>{"ለዚህ አባል ምንም እጣ ቁጥር አልሰየሙም"}</Text>
+                                        <Text style={[styles.xSmallTextAm, { alignSelf: "center", marginVertical: 40, color: "green" }]}>ለዚህ አባል ምንም እጣ ቁጥር አልሰየሙም</Text>
                                         :
                                         <View style={{ flexDirection: "row", gap: 14, flexWrap: "wrap", marginTop: 20 }}>
                                              {showMemberLotNumberList()}
@@ -242,7 +242,7 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                                                             source={require("../../assets/images/error.webp")}
                                                             style={{ height: 80, width: 80 }}
                                                        />
-                                                       <Text style={styles.errorText}>{errorMessage}</Text>
+                                                       <Text style={styles.errorTextAm}>{errorMessage}</Text>
                                                   </View>
                                              </>
                                         }
@@ -253,12 +253,11 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                                    <View style={[styles.basicStyle, { height: 50 }]}>
                                         <ActivityIndicator size="small" color={COLORS.primary} />
                                    </View>
-
                               }
 
                               {show !== true ?
                                    <TouchableOpacity onPress={() => setShow(true)} style={[styles.lightButtons, { alignSelf: "flex-end", marginHorizontal: 16, marginTop: 20, paddingVertical: 3 }]}>
-                                        <Text style={styles.smallText}>{"እጣ ቁጥር ይሰይሙ"}</Text>
+                                        <Text style={styles.smallTextAm}>እጣ ቁጥር ይሰይሙ</Text>
                                    </TouchableOpacity>
                                    :
                                    <View style={{ marginBottom: 50 }}>
@@ -268,7 +267,7 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                                         </TouchableOpacity>
                                         <View style={styles.allInputContainer}>
                                              <View style={styles.inputContainer}>
-                                                  <Text style={styles.mediumText}>{"የመደብ አይነት፡"}</Text>
+                                                  <Text style={styles.mediumTextAm}>የመደብ አይነት፡</Text>
                                                   <Controller
                                                        control={control}
                                                        rules={{ required: "የመደብ አይነት ይምረጡ" }}
@@ -289,11 +288,11 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                                                             />
                                                        )}
                                                   />
-                                                  {errors.selectedMedebType && <Text style={styles.inputErrorText}>{errors.selectedMedebType.message}</Text>}
+                                                  {errors.selectedMedebType && <Text style={styles.inputErrorTextAm}>{errors.selectedMedebType.message}</Text>}
                                              </View>
 
                                              <View style={styles.inputContainer}>
-                                                  <Text style={styles.mediumText}>{"እጣ ቁጥር፡"}</Text>
+                                                  <Text style={styles.mediumTextAm}>እጣ ቁጥር፡</Text>
                                                   <Controller
                                                        control={control}
                                                        rules={{ required: true, }}
@@ -307,16 +306,16 @@ export default function EkubMemberLotNumber({ route, navigation }) {
                                                             </View>
                                                        )}
                                                   />
-                                                  {errors.lotNumber && <Text style={styles.inputErrorText}>{errors.lotNumber.message}</Text>}
+                                                  {errors.lotNumber && <Text style={styles.inputErrorTextAm}>{errors.lotNumber.message}</Text>}
                                              </View>
                                         </View>
 
                                         {isValid === true ?
                                              <TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary }]}>
-                                                  <Text style={styles.submitButtonsText}>{"ይሰይሙ"}</Text>
+                                                  <Text style={[styles.mediumTextAm, { color: COLORS.offwhite }]}>ይሰይሙ</Text>
                                              </TouchableOpacity> :
                                              <Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
-                                                  <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ይሰይሙ"}</Text>
+                                                  <Text style={[styles.mediumTextAm, { color: COLORS.darkText }]}>ይሰይሙ</Text>
                                              </Pressable>
                                         }
                                    </View>

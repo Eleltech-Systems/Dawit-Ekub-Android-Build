@@ -105,7 +105,7 @@ export default function ManageLotNumber({ route, navigation }) {
                                    </Pressable>
                               </View>
                               <View style={{ backgroundColor: COLORS.secondary2, marginTop: 10, borderRadius: 10, flexDirection: "row", marginBottom: 10, paddingHorizontal: 5, alignSelf: "center" }}>
-                                   <Text style={styles.smallText}>{index + 1}{"ኛ"}</Text>
+                                   <Text style={styles.smallTextAm}>{index + 1}{"ኛ"}</Text>
                                    <View style={[styles.resultContainer, { marginVertical: 10 }]}>
                                         {item.medebType === "ሙሉ_መደብ" &&
                                              <TouchableOpacity onPress={() => handleLotNumberPress(item.lotNumber)}
@@ -131,7 +131,7 @@ export default function ManageLotNumber({ route, navigation }) {
                          {visibleMenuIndex === index && (
                               <TouchableOpacity onPress={() => handleDelete(item.lotNumber)} style={[styles.lightButtons, { width: 86, alignSelf: "center" }]}>
                                    <MaterialCommunityIcons name="arrow-up-left" size={16} color={COLORS.primary} />
-                                   <Text style={styles.xSmallText}>{"ይመልሱ"}</Text>
+                                   <Text style={styles.xSmallTextAm}>ይመልሱ</Text>
                               </TouchableOpacity>
                          )}
                     </View>
@@ -163,7 +163,7 @@ export default function ManageLotNumber({ route, navigation }) {
                               <View style={{ width: "80%" }}>
                                    <Text style={styles.mediumText}>{item.fullName}</Text>
                                    <View style={styles.memberInfoContainer}>
-                                        <Text style={styles.smallText}>
+                                        <Text style={styles.smallTextAm}>
                                              {memberByLotNumber.length === 1 && "ሙሉ መደብ ደራሽ፡"}
                                              {memberByLotNumber.length === 2 && "ግማሽ መደብ ደራሽ፡"}
                                              {memberByLotNumber.length === 4 && "እሩብ መደብ ደራሽ፡"}
@@ -189,7 +189,7 @@ export default function ManageLotNumber({ route, navigation }) {
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                          <FontAwesome6 name="arrow-left" size={20} color={COLORS.offwhite} />
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>{"እጣ ማውጫ"}</Text>
+                    <Text style={styles.headerTextAm}>እጣ ማውጫ</Text>
                     <Text></Text>
                </View>
                {ekub.length === 0 ?
@@ -200,13 +200,13 @@ export default function ManageLotNumber({ route, navigation }) {
                     <ScrollView>
                          {loteryNumber.length === 0 ?
                               <View style={styles.lotCont}>
-                                   <Text style={[styles.smallText, { color: COLORS.primary }]}>{"ምንም እጣ የለም"}</Text>
+                                   <Text style={[styles.smallTextAm, { color: COLORS.primary }]}>ምንም እጣ የለም</Text>
                               </View>
                               :
                               <>
                                    {loteryNumber.length > 0 &&
-                                        <Text style={[styles.smallText, { marginHorizontal: 16, marginTop: 20 }]}>
-                                             {"እጣ ዝርዝር ብዛት"} = {loteryNumber.length}
+                                        <Text style={[styles.smallTextAm, { marginHorizontal: 16, marginTop: 20 }]}>
+                                             እጣ ዝርዝር ብዛት = {loteryNumber.length}
                                         </Text>
                                    }
                                    <View style={styles.lotCont}>{lotNumberList()}</View>
@@ -218,7 +218,7 @@ export default function ManageLotNumber({ route, navigation }) {
                               <View style={{ marginHorizontal: 16 }}>
                                    <TouchableOpacity onPress={() => navigation.navigate("AddEkubLotWinner", { ekubId: ekub.id })}
                                         style={[styles.resultContainer, { backgroundColor: COLORS.primary, borderBottomLeftRadius: 12, borderBottomRightRadius: 12, alignSelf: "center", paddingHorizontal: 16, paddingVertical: 5, gap: 10 }]}>
-                                        <Text style={[styles.smallText, { color: COLORS.offwhite }]}>{"ከእጣ  ዝርዝር  ያውጡ"}</Text>
+                                        <Text style={[styles.smallTextAm, { color: COLORS.offwhite }]}>ከእጣ  ዝርዝር  ያውጡ</Text>
                                         <MaterialCommunityIcons name="arrow-down-right" size={20} color={COLORS.offwhite} />
                                    </TouchableOpacity>
                                    {loteryNumber.length > 1 &&
@@ -236,7 +236,7 @@ export default function ManageLotNumber({ route, navigation }) {
 
                          {ekubLotWinner.length !== 0 &&
                               <>
-                                   <Text style={[styles.mediumText, { alignSelf: "center", marginTop: 40, marginBottom: 10 }]}>{"እጣ የወጣላቸው"}</Text>
+                                   <Text style={[styles.mediumTextAm, { alignSelf: "center", marginTop: 40, marginBottom: 10 }]}>እጣ የወጣላቸው</Text>
                                    {memberByLotNumber.length !== 0 &&
                                         <View style={[styles.basicStyle, { marginBottom: 20, flexWrap: "wrap", marginHorizontal: 10 }]}>
                                              {showEkubMemberWithLot()}
@@ -244,7 +244,7 @@ export default function ManageLotNumber({ route, navigation }) {
 
                                    }
 
-                                   {message !== '' && <Text style={styles.errorText}>{message}</Text>}
+                                   {message !== '' && <Text style={styles.errorTextAm}>{message}</Text>}
 
                                    <View style={[styles.resultContainer, { height: 40, justifyContent: "space-between", marginHorizontal: 20, marginBottom: 10 }]}>
                                         <Pressable onPress={() => setShow(!show)}>
@@ -257,7 +257,7 @@ export default function ManageLotNumber({ route, navigation }) {
 
                                         {show &&
                                              <TouchableOpacity onPress={() => handleDeleteAll()} style={styles.lightButtons}>
-                                                  <Text style={styles.smallText}>{"ሁሉንም ወደ እጣ ዝርዝር ይመልሱ"}</Text>
+                                                  <Text style={styles.smallTextAm}>ሁሉንም ወደ እጣ ዝርዝር ይመልሱ</Text>
                                              </TouchableOpacity>
                                         }
                                         <Text></Text>

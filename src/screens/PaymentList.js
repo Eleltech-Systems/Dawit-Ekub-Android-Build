@@ -59,7 +59,10 @@ export default function PaymentList({ route, navigation }) {
                          {/* Display the total amount for this date */}
                          {totalPayment && (
                               <View style={[styles.resultContainer, { justifyContent: "space-between", marginHorizontal: 10, marginTop: 30, paddingHorizontal: 10, paddingVertical: 14, borderTopLeftRadius: 10, borderTopRightRadius: 10, backgroundColor: COLORS.secondary, }]}>
-                                   <Text style={styles.mediumText}>{"ቀን: "}{item.paymentDate}</Text>
+                                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <Text style={styles.mediumTextAm}>ቀን: </Text>
+                                        <Text style={styles.mediumText}>{item.paymentDate}</Text>
+                                   </View>
                                    <Text style={styles.mediumText}>{formatCurrency(totalPayment.totalAmount)}</Text>
                               </View>
                          )}
@@ -67,7 +70,7 @@ export default function PaymentList({ route, navigation }) {
                          <View style={styles.listContainer}>
                               <Text style={styles.mediumText}>{item.payerName}</Text>
                               <View style={[styles.resultContainer, { gap: 15 }]}>
-                                   <Text style={styles.smallText}>{"የብር መጠን"}</Text>
+                                   <Text style={styles.smallTextAm}>የብር መጠን</Text>
                                    <Entypo name="arrow-long-right" size={20} color="green" />
                                    <Text style={styles.smallText}>{formatCurrency(item.totalAmount)}</Text>
                               </View>
@@ -81,7 +84,7 @@ export default function PaymentList({ route, navigation }) {
                <View style={styles.listContainer}>
                     <Text style={styles.mediumText}>{item.payerName}</Text>
                     <View style={[styles.resultContainer, { gap: 15 }]}>
-                         <Text style={styles.smallText}>{"የብር መጠን"}</Text>
+                         <Text style={styles.smallTextAm}>የብር መጠን</Text>
                          <Entypo name="arrow-long-right" size={20} color="green" />
                          <Text style={styles.smallText}>{formatCurrency(item.totalAmount)}</Text>
                     </View>
@@ -103,11 +106,12 @@ export default function PaymentList({ route, navigation }) {
                                    <FontAwesome6 name="arrow-left" size={20} color="white" />
                               </TouchableOpacity>
                               {fetchedPayments.length !== 0 ?
-                                   <Text style={styles.headerText}>
-                                        {" አጠቃላይ  =  "}{formatCurrency(sumOfAllEkubMemberPayment)}
-                                   </Text>
+                                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <Text style={styles.headerTextAm}>አጠቃላይ  =  </Text>
+                                        <Text style={styles.headerText}>{formatCurrency(sumOfAllEkubMemberPayment)}</Text>
+                                   </View>
                                    :
-                                   <Text style={styles.headerText}>{"የክፍያ ዝርዝር"}</Text>
+                                   <Text style={styles.headerTextAm}>የክፍያ ዝርዝር</Text>
                               }
                               {fetchedPayments.length !== 0 &&
                                    <TouchableOpacity onPress={() => setShow(!show)}>
@@ -132,7 +136,7 @@ export default function PaymentList({ route, navigation }) {
                                    {fetchedPayments.length === 0 ?
                                         <View style={{ margin: 50, alignItems: "center", paddingVertical: 100 }}>
                                              <Image source={require('../../assets/images/nofile.webp')} style={{ height: 160, width: 160, alignSelf: "center" }} />
-                                             <Text style={[styles.smallText, { marginTop: 20, color: COLORS.primary }]}>{"ምንም የተፈጸመ ክፍያ የለም!"}</Text>
+                                             <Text style={[styles.smallTextAm, { marginTop: 20, color: COLORS.primary }]}>ምንም የክፍያ ዝርዝር የለም!</Text>
                                         </View> :
                                         <FlatList scrollEnabled={false}
                                              data={limitedData}

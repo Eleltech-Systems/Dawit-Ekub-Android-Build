@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity, ScrollView, ActivityIndicator, AppState, Linking } from 'react-native';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Entypo, FontAwesome6, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from '@react-navigation/native';
@@ -126,22 +126,22 @@ export default function Home({ navigation }) {
      const showEkubList = () => {
           return ekubLists.map((item, index) => {
                return (
-                    <View key={index} style={{ backgroundColor: COLORS.secondary, marginHorizontal: 16, marginVertical: 30, borderRadius: 12 }}>
+                    <View key={index} style={{ backgroundColor: COLORS.secondary, marginHorizontal: 16, marginVertical: 20, borderRadius: 12 }}>
                          <View style={{ backgroundColor: "#82b4a6", alignItems: 'center', borderTopRightRadius: 12, borderTopLeftRadius: 12, padding: 5 }}>
                               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingHorizontal: 10 }}>
                                    <Text></Text>
-                                   <Text style={styles.mediumText}>{item.ekubName} {"-"} <Text style={styles.mediumText}>{item.ekubType}</Text></Text>
+                                   <Text style={styles.mediumTextAm}>{item.ekubName} {"-"} <Text style={styles.mediumTextAm}>{item.ekubType}</Text></Text>
                                    <TouchableOpacity onPress={() => (setVisibleForDelete(true), setEkubIdToDelete(item.id))}>
                                         <FontAwesome6 name="trash" size={16} color={COLORS.primary} />
                                    </TouchableOpacity>
                               </View>
-                              <Text style={styles.smallText}>{"ከ "}<Text style={{ color: COLORS.primary }}>{item.startDate}</Text>{"  እስከ  "}<Text style={{ color: COLORS.primary }}>{item.endDate}</Text></Text>
+                              <Text style={[styles.smallTextAm, { marginTop: 5 }]}>{"ከ "}<Text style={{ color: COLORS.primary }}>{item.startDate}</Text>{"  እስከ  "}<Text style={{ color: COLORS.primary }}>{item.endDate}</Text></Text>
                          </View>
                          <View style={{ padding: 20 }}>
                               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 160 }}>
                                         <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                        <Text style={styles.smallText}>በሙሉ መደብ ደራሽ</Text>
+                                        <Text style={styles.smallTextAm}>በሙሉ መደብ ደራሽ</Text>
                                    </View>
                                    <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
                                    <Text style={[styles.smallText, { marginLeft: 14 }]}>{formatCurrency(item.medebAmount * item.duration)}</Text>
@@ -149,7 +149,7 @@ export default function Home({ navigation }) {
                               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 160 }}>
                                         <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                        <Text style={styles.smallText}>በግማሽ መደብ ደራሽ</Text>
+                                        <Text style={styles.smallTextAm}>በግማሽ መደብ ደራሽ</Text>
                                    </View>
                                    <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
                                    <Text style={[styles.smallText, { marginLeft: 14 }]}>{formatCurrency(item.medebAmount / 2 * item.duration)}</Text>
@@ -157,7 +157,7 @@ export default function Home({ navigation }) {
                               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 160 }}>
                                         <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                        <Text style={styles.smallText}>በእሩብ መደብ ደራሽ</Text>
+                                        <Text style={styles.smallTextAm}>በእሩብ መደብ ደራሽ</Text>
                                    </View>
                                    <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
                                    <Text style={[styles.smallText, { marginLeft: 14 }]}>{formatCurrency(item.medebAmount / 4 * item.duration)}</Text>
@@ -165,7 +165,7 @@ export default function Home({ navigation }) {
                          </View>
 
                          <TouchableOpacity onPress={() => navigation.navigate("Ekub", { ekubId: item.id })} style={{ backgroundColor: COLORS.primary, marginHorizontal: 20, marginBottom: 20, padding: 8, borderRadius: 8, alignItems: 'center' }}>
-                              <Text style={[styles.smallText, { color: COLORS.secondary }]}>ይቀጥሉ</Text>
+                              <Text style={[styles.smallTextAm, { color: COLORS.secondary }]}>ይቀጥሉ</Text>
                          </TouchableOpacity>
 
                          <View style={styles.modalContainer}>
@@ -177,7 +177,7 @@ export default function Home({ navigation }) {
                                              </TouchableOpacity>
                                              <View style={styles.modalBox}>
                                                   <ActivityIndicator size="large" color="green" />
-                                                  <Text style={styles.smallText}>{"በመሰረዝ ላይ . . . "}</Text>
+                                                  <Text style={styles.smallTextAm}>በመሰረዝ ላይ . . . </Text>
                                              </View>
                                         </>
                                         :
@@ -191,16 +191,16 @@ export default function Home({ navigation }) {
                                                             source={require('../../assets/images/whyuser.webp')}
                                                             style={{ alignSelf: "center", height: 150, width: 150, marginVertical: 10 }}
                                                        />
-                                                       <Text style={[styles.smallText, { alignSelf: "center", textAlign: "center", width: "80%" }]}>
-                                                            {"እርግጠኛ ነዎት ይህን እቁብ ለመሰረዝ ወስነዋል?"}
+                                                       <Text style={[styles.smallTextAm, { alignSelf: "center", textAlign: "center", width: "80%" }]}>
+                                                            እርግጠኛ ነዎት ይህን እቁብ ለመሰረዝ ወስነዋል?
                                                        </Text>
                                                        <View style={{ flexDirection: "row", alignItems: "center", gap: 10, justifyContent: "space-evenly", marginVertical: 20 }}>
                                                             <TouchableOpacity onPress={() => { setVisibleForDelete(false), setVisibleMenuIndex(null) }} style={styles.answerBtn}>
                                                                  <Ionicons name="arrow-back" size={18} color="green" />
-                                                                 <Text style={styles.aboutEkub}>{"ይቅር"}</Text>
+                                                                 <Text style={styles.smallTextAm}>ይቅር</Text>
                                                             </TouchableOpacity>
                                                             <TouchableOpacity onPress={() => { handleDelete(ekubIdToDelete), setVisibleForDelete(false) }} style={styles.answerBtn}>
-                                                                 <Text style={styles.aboutEkub}>{"አዎን"}</Text>
+                                                                 <Text style={styles.smallTextAm}>አዎን</Text>
                                                                  <FontAwesome6 name="trash" size={16} color={COLORS.primary} />
                                                             </TouchableOpacity>
                                                        </View>
@@ -211,7 +211,7 @@ export default function Home({ navigation }) {
                                                             <Ionicons name="close" size={20} color="black" />
                                                        </TouchableOpacity>
                                                        <View style={styles.modalBox}>
-                                                            <Text style={styles.errorText}>{errorMessage}</Text>
+                                                            <Text style={styles.errorTextAm}>{errorMessage}</Text>
                                                        </View>
                                                   </>
                                              }
@@ -255,15 +255,15 @@ export default function Home({ navigation }) {
                          {ekubLists.length === 0 ?
                               (<View style={styles.container}>
                                    <View style={{ marginHorizontal: 30, marginBottom: 20, gap: 20 }}>
-                                        <Text style={{ alignSelf: "center", fontWeight: "500", fontSize: 24, color: COLORS.secondary }}>{"እንኳን ደህና መጡ"}</Text>
-                                        <Text style={[styles.smallText, { color: COLORS.secondary, textAlign: 'justify' }]}>
-                                             {"በየእለቱ ፣ በየሳምንቱ ፣ እንዲሁም በየወሩ የሚሰበሰቡ እቁቦችን በቀላሉ እዚህ ማስተዳደር ይችላሉ፡፡"}
+                                        <Text style={[styles.largTextAm, { alignSelf: "center", fontSize: 24, color: COLORS.secondary }]}>እንኳን ደህና መጡ</Text>
+                                        <Text style={[styles.smallTextAm, { color: COLORS.secondary, textAlign: 'justify' }]}>
+                                             በየእለቱ ፣ በየሳምንቱ ፣ እንዲሁም በየወሩ የሚሰበሰቡ እቁቦችን በቀላሉ እዚህ ማስተዳደር ይችላሉ።
                                         </Text>
                                    </View>
                                    {!isAgreed ?
                                         <View style={{ marginHorizontal: 30 }}>
-                                             <Text style={[styles.smallText, { color: COLORS.secondary, textAlign: 'justify' }]}>
-                                                  {"ይህን መተግበሪያ ለመጠቀም እባክዎ በውሎች እና ሁኔታዎች ይስማሙ።"}
+                                             <Text style={[styles.smallTextAm, { color: COLORS.secondary, textAlign: 'justify' }]}>
+                                                  ይህን መተግበሪያ ለመጠቀም እባክዎ በውሎች እና ሁኔታዎች ይስማሙ።
                                                   <Text style={{ color: 'blue', fontWeight: '400' }} onPress={() => handleUrlPress("https://www.eleltech.com/dawit-ekub-terms-conditions.html")}>
                                                        {"   (Terms and conditions of use) "}
                                                   </Text>
@@ -275,17 +275,17 @@ export default function Home({ navigation }) {
                                              </View>
 
                                              <TouchableOpacity onPress={handleAccept} style={[styles.submitButtons, { marginHorizontal: 0, backgroundColor: COLORS.secondary }]}>
-                                                  <Text style={styles.smallText}>{"ይቀጥሉ"}</Text>
+                                                  <Text style={styles.smallTextAm}>ይቀጥሉ</Text>
                                              </TouchableOpacity>
                                         </View>
                                         :
                                         <View style={{ width: '100%', paddingHorizontal: 10 }}>
-                                             <Text style={[styles.smallText, { marginTop: 20, textAlign: 'center', marginBottom: 20, color: COLORS.secondary }]}>{"አሁን እቁብዎን መጀመር ይችላሉ   👇"}</Text>
+                                             <Text style={[styles.smallTextAm, { marginTop: 20, textAlign: 'center', marginBottom: 20, color: COLORS.secondary }]}>አሁን እቁብዎን መጀመር ይችላሉ   👇</Text>
                                              <TouchableOpacity
                                                   onPress={() => navigation.navigate("StartNewEkub")}
                                                   style={[styles.submitButtons, { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 20, backgroundColor: COLORS.secondary }]}>
                                                   <FontAwesome6 name="plus" size={18} color={COLORS.primary} />
-                                                  <Text style={[styles.mediumText, { color: COLORS.primary }]}>{"አዲስ እቁብ ይጀምሩ"}</Text>
+                                                  <Text style={[styles.mediumTextAm, { color: COLORS.primary }]}>አዲስ እቁብ ይጀምሩ</Text>
                                              </TouchableOpacity>
                                         </View>
                                    }
@@ -293,7 +293,7 @@ export default function Home({ navigation }) {
                               </View>)
                               :
                               (<View style={styles.container}>
-                                   <Text style={[styles.mediumText, { color: COLORS.secondary }]}>{ekubLists.length === 1 ? "የተጀመረ  እቁብ" : "የተጀመሩ  እቁቦች"}</Text>
+                                   <Text style={[styles.mediumTextAm, { color: COLORS.secondary }]}>{ekubLists.length === 1 ? "የተጀመረ  እቁብ" : "የተጀመሩ  እቁቦች"}</Text>
                                    {showEkubList()}
                               </View>)
                          }

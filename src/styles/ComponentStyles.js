@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COLORS } from '../constants/theme';
+import { COLORS, FONTS } from '../constants/theme';
 
 export default StyleSheet.create({
      headerContainer: {
@@ -155,6 +155,63 @@ export default StyleSheet.create({
           fontSize: 14,
           color: COLORS.darkText
      },
+
+
+     //For Amharic---------------------------
+     //--------------------------------
+     headerTextAm: {
+          fontSize: 16,
+          fontFamily: FONTS.medium,
+          color: COLORS.offwhite
+     },
+     largTextAm: {
+          fontFamily: FONTS.medium,
+          fontSize: 18,
+          color: COLORS.darkText
+     },
+     mediumTextAm: {
+          fontFamily: FONTS.medium,
+          fontSize: 16,
+          color: COLORS.darkText
+     },
+     smallTextAm: {
+          fontFamily: FONTS.medium,
+          fontSize: 14,
+          color: COLORS.darkText
+     },
+     xSmallTextAm: {
+          fontFamily: FONTS.regular,
+          fontSize: 12,
+          color: COLORS.darkText
+     },
+     errorTextAm: {
+          fontFamily: FONTS.regular,
+          fontSize: 12,
+          color: "red",
+          textAlign: "center"
+     },
+     inputErrorTextAm: {
+          alignSelf: "flex-end",
+          color: COLORS.red,
+          fontSize: 14,
+          fontFamily: FONTS.regular
+     },
+     errorTextAm: {
+          fontFamily: FONTS.regular,
+          fontSize: 12,
+          color: "red",
+          textAlign: "center"
+     },
+     inputTextAm: {
+          paddingVertical: 12,
+          width: "100%",
+          fontSize: 14,
+          color: COLORS.primary,
+          fontFamily: FONTS.medium
+     },
+     //--------------------------------------
+
+
      xSmallText: {
           fontWeight: "400",
           fontSize: 12,

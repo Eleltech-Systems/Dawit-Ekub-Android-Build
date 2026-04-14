@@ -108,7 +108,7 @@ export default function StartNewEkub({ navigation }) {
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                          <FontAwesome6 name="arrow-left" size={20} color={COLORS.offwhite} />
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>{"አዲስ እቁብ ይጀምሩ"}</Text>
+                    <Text style={styles.headerTextAm}>አዲስ እቁብ ይጀምሩ</Text>
                     <Text></Text>
                </View>
                <KeyboardAvoidingView
@@ -116,22 +116,21 @@ export default function StartNewEkub({ navigation }) {
                     keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust offset if needed
                >
                     <ScrollView>
-
                          <View style={{ alignItems: 'center', marginTop: 30 }}>
                               <Image source={require("../../assets/images/money-bag2.webp")} style={{ marginLeft: 10, height: 90, width: 90 }} />
                          </View>
                          <View style={[styles.allInputContainer, { padding: 0 }]}>
                               {/* Title and Short Description */}
-                              <View style={{ borderTopLeftRadius: 14, borderTopRightRadius: 14, backgroundColor: COLORS.primary, padding: 10 }}>
-                                   <Text style={[styles.smallText, { textAlign: "justify", color: COLORS.offwhite }]}>
-                                        {"እቁብዎን ከመጀመርዎ በፊት የመደብ ብር መጠን እና የእቁብዎን የጊዜ ቆይታ ቀድመው መወሰን ይገባዎታል። እጣ የሚጥሉበትን ጊዜ በአባልዎ ብዛት ላይ ተመስርተው ይወስናሉ።"}
+                              <View style={{ borderTopLeftRadius: 14, borderTopRightRadius: 14, backgroundColor: COLORS.primary, padding: 20 }}>
+                                   <Text style={[styles.xSmallTextAm, { textAlign: "justify", color: COLORS.offwhite }]}>
+                                        እቁብዎን ከመጀመርዎ በፊት የመደብ ብር መጠን እና የእቁብዎን የጊዜ ቆይታ ቀድመው መወሰን ይገባዎታል። እጣ የሚጥሉበትን ጊዜ በአባልዎ ብዛት ላይ ተመስርተው ይወስናሉ።
                                    </Text>
                               </View>
 
                               {/* Input Forms */}
                               <View style={{ padding: 20 }}>
                                    <View style={styles.inputContainer}>
-                                        <Text style={styles.mediumText}>{"የእቁብ ስም፡"}</Text>
+                                        <Text style={styles.mediumTextAm}>የእቁብ ስም፡</Text>
                                         <Controller
                                              control={control}
                                              rules={{ required: true, }}
@@ -152,11 +151,11 @@ export default function StartNewEkub({ navigation }) {
                                                   </View>
                                              )}
                                         />
-                                        {errors.ekubName && <Text style={styles.inputErrorText}>{errors.ekubName.message}</Text>}
+                                        {errors.ekubName && <Text style={styles.inputErrorTextAm}>{errors.ekubName.message}</Text>}
                                    </View>
 
                                    <View style={styles.inputContainer}>
-                                        <Text style={styles.mediumText}>{"የእቁብ አይነት፡"}</Text>
+                                        <Text style={styles.mediumTextAm}>የእቁብ አይነት፡</Text>
                                         <Controller
                                              control={control}
                                              rules={{ required: "እባክዎ የእቁብ አይነት ይምረጡ", }}
@@ -171,7 +170,7 @@ export default function StartNewEkub({ navigation }) {
                                                        boxStyles={styles.inputSelectListBoxStyle}
                                                        inputStyles={styles.inputSelectListInputStyle}
                                                        dropdownStyles={styles.inputSelectListDropdownStyles}
-                                                       dropdownTextStyles={styles.smallText}
+                                                       dropdownTextStyles={styles.smallTextAm}
                                                        setSelected={(selectedValue) => {
                                                             onChange(selectedValue);
                                                             setEkubType(selectedValue);
@@ -179,11 +178,11 @@ export default function StartNewEkub({ navigation }) {
                                                   />
                                              )}
                                         />
-                                        {errors.ekubType && <Text style={styles.inputErrorText}>{errors.ekubType.message}</Text>}
+                                        {errors.ekubType && <Text style={styles.inputErrorTextAm}>{errors.ekubType.message}</Text>}
                                    </View>
 
                                    <View style={styles.inputContainer}>
-                                        <Text style={styles.mediumText}>{"መደብ ብር፡"}</Text>
+                                        <Text style={styles.mediumTextAm}>መደብ ብር፡</Text>
                                         <Controller
                                              control={control}
                                              rules={{ required: true, }} name="medebAmount"
@@ -202,11 +201,11 @@ export default function StartNewEkub({ navigation }) {
                                                   </View>
                                              )}
                                         />
-                                        {errors.medebAmount && <Text style={styles.inputErrorText}>{errors.medebAmount.message}</Text>}
+                                        {errors.medebAmount && <Text style={styles.inputErrorTextAm}>{errors.medebAmount.message}</Text>}
                                    </View>
 
                                    <View style={styles.inputContainer}>
-                                        <Text style={styles.mediumText}>{"የሚጀመርበት ቀን፡"}</Text>
+                                        <Text style={styles.mediumTextAm}>የሚጀመርበት ቀን፡</Text>
                                         <Controller
                                              control={control}
                                              rules={{ required: "የሚጀምሩበትን ቀን ይምረጡ" }}
@@ -240,14 +239,14 @@ export default function StartNewEkub({ navigation }) {
                                                   </>
                                              )}
                                         />
-                                        {errors.selectedDate && (<Text style={styles.inputErrorText}>{errors.selectedDate.message}</Text>)}
+                                        {errors.selectedDate && (<Text style={styles.inputErrorTextAm}>{errors.selectedDate.message}</Text>)}
                                    </View>
 
                                    <View style={styles.inputContainer}>
                                         {ekubType === '' && <Text style={styles.mediumText}></Text>}
-                                        {ekubType === 'የቀን' && <Text style={styles.mediumText}>{"የሚፈጀው ቀን፡"}</Text>}
-                                        {ekubType === 'የሳምንት' && <Text style={styles.mediumText}>{"የሚፈጀው ሳምንት፡"}</Text>}
-                                        {ekubType === 'የወር' && <Text style={styles.mediumText}>{"የሚፈጀው ወር፡"}</Text>}
+                                        {ekubType === 'የቀን' && <Text style={styles.mediumTextAm}>{"የሚፈጀው ቀን፡"}</Text>}
+                                        {ekubType === 'የሳምንት' && <Text style={styles.mediumTextAm}>{"የሚፈጀው ሳምንት፡"}</Text>}
+                                        {ekubType === 'የወር' && <Text style={styles.mediumTextAm}>{"የሚፈጀው ወር፡"}</Text>}
                                         <Controller
                                              control={control}
                                              rules={{ required: true, }}
@@ -268,7 +267,7 @@ export default function StartNewEkub({ navigation }) {
 
                                              )}
                                         />
-                                        {errors.duration && <Text style={styles.inputErrorText}>{errors.duration.message}</Text>}
+                                        {errors.duration && <Text style={styles.inputErrorTextAm}>{errors.duration.message}</Text>}
                                    </View>
                               </View>
                          </View>
@@ -277,31 +276,31 @@ export default function StartNewEkub({ navigation }) {
                          {isValid === true &&
                               <View style={{ margin: 20 }}>
                                    <View style={{ backgroundColor: "#bdc6df", borderTopLeftRadius: 14, borderTopRightRadius: 14, padding: 12 }}>
-                                        <Text style={[styles.mediumText, { textAlign: "center", marginVertical: 5, color: COLORS.primary }]}>
+                                        <Text style={[styles.mediumTextAm, { textAlign: "center", marginVertical: 5, color: COLORS.primary }]}>
                                              {ekubName.trim().replace(/\s+/g, ' ')}
                                         </Text>
                                         <View style={{ flexDirection: 'row', gap: 10, marginTop: 10, alignItems: 'center' }}>
                                              <FontAwesome6 name="circle-info" size={16} color={COLORS.primary} />
-                                             <Text style={{ width: '96%', fontSize: 12 }}>በዚህ መረጃ ላይ ተመስርተው እቁብዎን ከመጀመርዎ በፊት መልሰው ማስተካከል ይችላሉ።</Text>
+                                             <Text style={[styles.xSmallTextAm, { width: '96%' }]}>በዚህ መረጃ ላይ ተመስርተው እቁብዎን ከመጀመርዎ በፊት መልሰው ማስተካከል ይችላሉ።</Text>
                                         </View>
                                    </View>
                                    <View style={{ backgroundColor: COLORS.secondary2, paddingHorizontal: 20, paddingBottom: 10, paddingTop: 10, borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }}>
                                         <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallText, { width: "34%", }]}>{"የእቁብ አይነት፡"}</Text>
+                                             <Text style={[styles.smallTextAm, { width: "34%", }]}>የእቁብ አይነት፡</Text>
                                              <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
-                                             <Text style={[styles.smallText, { marginLeft: 10 }]}>{ekubType}</Text>
+                                             <Text style={[styles.smallTextAm, { marginLeft: 10 }]}>{ekubType}</Text>
                                         </View>
                                         <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallText, { width: "34%", }]}>{"መደብ ብር፡"}</Text>
+                                             <Text style={[styles.smallTextAm, { width: "34%", }]}>መደብ ብር፡</Text>
                                              <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
                                              <Text style={[styles.smallText, { marginLeft: 10 }]}>{formatCurrency(medebAm)}</Text>
                                         </View>
                                         <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallText, { width: "34%", }]}>{"የሚጀመርበት ቀን፡ "}</Text>
+                                             <Text style={[styles.smallTextAm, { width: "34%", }]}>የሚጀመርበት ቀን፡ </Text>
                                              <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
                                              <Text style={[styles.smallText, { marginLeft: 10 }]}>{startDat}</Text>
                                         </View>
-                                        <Text style={[styles.smallText, { marginTop: 20 }]}>{"ይህ  "}
+                                        <Text style={[styles.smallTextAm, { marginTop: 20 }]}>{"ይህ  "}
                                              <Text style={{ color: COLORS.primary }}>{ekubType}</Text>{"  እቁብ የሚጠናቀቀው በ  "}
                                              <Text style={{ color: COLORS.primary }}>{newDate}</Text>{"  ሲሆን ደራሽ  "}
                                              <Text style={{ color: COLORS.primary }}>{formatCurrency(Number(medebAm) * Number(durashn))}</Text>{"  ብር ነው።"}
@@ -320,7 +319,7 @@ export default function StartNewEkub({ navigation }) {
                                              </TouchableOpacity>
                                              <View style={styles.modalBox}>
                                                   <ActivityIndicator size="large" color={COLORS.primary} />
-                                                  <Text style={styles.smallText}>{"አዲስ እቁብ በመጀመር ላይ ..."}</Text>
+                                                  <Text style={styles.smallTextAm}>አዲስ እቁብ በመጀመር ላይ ...</Text>
                                              </View>
                                         </> :
                                         <>
@@ -334,7 +333,7 @@ export default function StartNewEkub({ navigation }) {
                                                                  source={require('../../assets/images/success.webp')}
                                                                  style={{ height: 100, width: 100 }}
                                                             />
-                                                            <Text style={styles.mediumText}>{successMessage}</Text>
+                                                            <Text style={styles.mediumTextAm}>{successMessage}</Text>
                                                        </View>
                                                   </>
                                              }
@@ -349,7 +348,7 @@ export default function StartNewEkub({ navigation }) {
                                                                  source={require('../../assets/images/error.webp')}
                                                                  style={{ height: 80, width: 80 }}
                                                             />
-                                                            <Text style={styles.errorText}>{errorMessage}</Text>
+                                                            <Text style={styles.errorTextAm}>{errorMessage}</Text>
                                                        </View>
                                                   </>
                                              }
@@ -361,14 +360,13 @@ export default function StartNewEkub({ navigation }) {
                          <View style={{ marginBottom: 50 }}>
                               {isValid === true ?
                                    <TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary }]}>
-                                        <Text style={styles.submitButtonsText}>{"ይጀምሩ"}</Text>
+                                        <Text style={[styles.smallTextAm, { color: COLORS.offwhite }]}>ይጀምሩ</Text>
                                    </TouchableOpacity> :
                                    <Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
-                                        <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ይጀምሩ"}</Text>
+                                        <Text style={[styles.smallTextAm, { color: COLORS.darkText }]}>ይጀምሩ</Text>
                                    </Pressable>
                               }
                          </View>
-
                     </ScrollView>
                </KeyboardAvoidingView>
           </>

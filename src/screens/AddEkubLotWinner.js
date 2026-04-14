@@ -98,7 +98,7 @@ export default function AddEkubLotWinner({ route, navigation }) {
                               <View style={{ width: '80%' }}>
                                    <Text style={styles.mediumText}>{item.fullName}</Text>
                                    <View style={styles.memberInfoContainer}>
-                                        <Text style={styles.smallText}>
+                                        <Text style={styles.smallTextAm}>
                                              {memberByLotNumber.length === 1 && "ሙሉ መደብ ደራሽ፡"}
                                              {memberByLotNumber.length === 2 && "ግማሽ መደብ ደራሽ፡"}
                                              {memberByLotNumber.length === 4 && "እሩብ መደብ ደራሽ፡"}
@@ -124,7 +124,7 @@ export default function AddEkubLotWinner({ route, navigation }) {
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                          <FontAwesome6 name="arrow-left" size={20} color={COLORS.offwhite} />
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>{"ከእጣ ዝርዝር ያውጡ"}</Text>
+                    <Text style={styles.headerTextAm}>ከእጣ ዝርዝር ያውጡ</Text>
                     <Text></Text>
                </View>
                <KeyboardAvoidingView
@@ -135,13 +135,12 @@ export default function AddEkubLotWinner({ route, navigation }) {
                          <Image
                               source={require("../../assets/images/addwinner.webp")}
                               style={{ marginVertical: 20, height: 200, width: 200, alignSelf: "center" }}
-
                          />
                          {showEkubMemberList()}
 
                          <View style={styles.allInputContainer}>
                               <View style={styles.inputContainer}>
-                                   <Text style={styles.mediumText}>{"እጣ ቁጥር፡"}</Text>
+                                   <Text style={styles.mediumTextAm}>እጣ ቁጥር፡</Text>
                                    <Controller
                                         control={control}
                                         rules={{ required: "እጣ ቁጥሩን ይምረጡ" }}
@@ -163,19 +162,19 @@ export default function AddEkubLotWinner({ route, navigation }) {
                                              />
                                         )}
                                    />
-                                   {errors.selectedLotNumber && <Text style={[styles.errorText, { alignSelf: "flex-end" }]}>{errors.selectedLotNumber.message}</Text>}
+                                   {errors.selectedLotNumber && <Text style={[styles.errorTextAm, { alignSelf: "flex-end" }]}>{errors.selectedLotNumber.message}</Text>}
                               </View>
                          </View>
 
-                         {message !== '' && <Text style={[styles.errorText, { alignSelf: "center" }]}>{message}</Text>}
+                         {message !== '' && <Text style={[styles.errorTextAm, { alignSelf: "center" }]}>{message}</Text>}
 
 
                          {isValid === true ?
                               <TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary }]}>
-                                   <Text style={styles.submitButtonsText}>{"ያውጡ"}</Text>
+                                   <Text style={[styles.smallTextAm, { color: COLORS.offwhite }]}>ያውጡ</Text>
                               </TouchableOpacity> :
                               <Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
-                                   <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ያውጡ"}</Text>
+                                   <Text style={[styles.mediumTextAm, { color: COLORS.darkText }]}>ያውጡ</Text>
                               </Pressable>
                          }
                     </ScrollView>

@@ -174,7 +174,7 @@ export default function AddEkubMember({ route, navigation }) {
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                          <FontAwesome6 name="arrow-left" size={20} color={COLORS.offwhite} />
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>{"አዲስ አባል ይጨምሩ"}</Text>
+                    <Text style={styles.headerTextAm}>አዲስ አባል ይጨምሩ</Text>
                     <Text></Text>
                </View>
 
@@ -205,8 +205,8 @@ export default function AddEkubMember({ route, navigation }) {
                                    keyExtractor={(item) => item.id}
                                    renderItem={renderContactItem}
                                    ListEmptyComponent={
-                                        <Text style={[styles.smallText, { alignSelf: "center", marginTop: 50 }]}>
-                                             {"ምንም ዕውቂያዎች አልተገኙም።"}
+                                        <Text style={[styles.smallTextAm, { alignSelf: "center", marginTop: 50 }]}>
+                                             ምንም ዕውቂያዎች አልተገኙም።
                                         </Text>
                                    }
                               />
@@ -222,7 +222,7 @@ export default function AddEkubMember({ route, navigation }) {
                               </TouchableOpacity>
                               <View style={styles.modalBox}>
                                    <ActivityIndicator size="large" color="green" />
-                                   <Text style={styles.smallText}>{"አባል በማስገባት ላይ ..."}</Text>
+                                   <Text style={styles.smallTextAm}>አባል በማስገባት ላይ ...</Text>
                               </View>
                          </> :
                          <>
@@ -236,17 +236,17 @@ export default function AddEkubMember({ route, navigation }) {
                                                   source={require("../../assets/images/success.webp")}
                                                   style={{ height: 100, width: 100, marginVertical: 10 }}
                                              />
-                                             <Text style={[styles.largText, { color: COLORS.primary }]}>{successMessage}</Text>
-                                             <Text style={[styles.smallText, { marginTop: 20 }]}>{"ሌላ እቁብተኛ መመዝገብ ይፈልጋሉ?"}</Text>
+                                             <Text style={[styles.largTextAm, { color: COLORS.primary }]}>{successMessage}</Text>
+                                             <Text style={[styles.smallTextAm, { marginTop: 20 }]}>ሌላ እቁብተኛ መመዝገብ ይፈልጋሉ?</Text>
 
                                         </View>
 
                                         <View style={[styles.resultContainer, { width: "90%", alignSelf: "center", justifyContent: "space-evenly", marginVertical: 20 }]}>
                                              <TouchableOpacity onPress={handleModalClose} style={[styles.lightButtons, { width: "26%", paddingVertical: 2 }]}>
-                                                  <Text style={styles.smallText}>{"አይ"}</Text>
+                                                  <Text style={styles.smallTextAm}>አይ</Text>
                                              </TouchableOpacity>
                                              <TouchableOpacity onPress={handleContinue} style={[styles.lightButtons, { width: "26%", paddingVertical: 2 }]}>
-                                                  <Text style={styles.smallText}>{"አዎን"}</Text>
+                                                  <Text style={styles.smallTextAm}>አዎን</Text>
                                              </TouchableOpacity>
 
                                         </View>
@@ -263,7 +263,7 @@ export default function AddEkubMember({ route, navigation }) {
                                                   source={require("../../assets/images/error.webp")}
                                                   style={{ height: 80, width: 80 }}
                                              />
-                                             <Text style={styles.errorText}>{errorMessage}</Text>
+                                             <Text style={styles.errorTextAm}>{errorMessage}</Text>
                                         </View>
                                    </>
                               }
@@ -279,7 +279,7 @@ export default function AddEkubMember({ route, navigation }) {
                          <Image source={require("../../assets/images/addnewuser.webp")} style={{ marginTop: 10, height: 140, width: 140, alignSelf: "center" }} />
                          <View style={[styles.allInputContainer, { marginTop: 0 }]}>
                               <View style={styles.inputContainer}>
-                                   <Text style={styles.smallText}>{"ሙሉ ስም፡"}</Text>
+                                   <Text style={styles.smallTextAm}>ሙሉ ስም፡</Text>
                                    <Controller
                                         control={control}
                                         rules={{ required: true, }}
@@ -294,11 +294,11 @@ export default function AddEkubMember({ route, navigation }) {
                                              </View>
                                         )}
                                    />
-                                   {errors.fullName && <Text style={styles.inputErrorText}>{errors.fullName.message}</Text>}
+                                   {errors.fullName && <Text style={styles.inputErrorTextAm}>{errors.fullName.message}</Text>}
                               </View>
 
                               <View style={styles.inputContainer}>
-                                   <Text style={styles.smallText}>{"ስልክ ቁጥር፡"}</Text>
+                                   <Text style={styles.smallTextAm}>ስልክ ቁጥር፡</Text>
                                    <Controller
                                         control={control}
                                         rules={{ required: true, }}
@@ -310,11 +310,11 @@ export default function AddEkubMember({ route, navigation }) {
                                              </View>
                                         )}
                                    />
-                                   {errors.phoneNumber && <Text style={styles.inputErrorText}>{errors.phoneNumber.message}</Text>}
+                                   {errors.phoneNumber && <Text style={styles.inputErrorTextAm}>{errors.phoneNumber.message}</Text>}
                               </View>
 
                               <View style={styles.inputContainer}>
-                                   <Text style={styles.smallText}>{"የክፍያ መጠን፡"}</Text>
+                                   <Text style={styles.smallTextAm}>የክፍያ መጠን፡</Text>
                                    <Controller
                                         control={control}
                                         rules={{ required: "ክፍያ ያስገቡ" }}
@@ -336,11 +336,11 @@ export default function AddEkubMember({ route, navigation }) {
                                              />
                                         )}
                                    />
-                                   {errors.paymentAmount && <Text style={styles.inputErrorText}>{errors.paymentAmount.message}</Text>}
+                                   {errors.paymentAmount && <Text style={styles.inputErrorTextAm}>{errors.paymentAmount.message}</Text>}
                               </View>
 
                               <View style={styles.inputContainer}>
-                                   <Text style={styles.smallText}>{"ተጨማሪ መረጃ፡"}</Text>
+                                   <Text style={styles.smallTextAm}>ተጨማሪ መረጃ፡</Text>
                                    <View style={{ borderWidth: 1, minHeight: 120, borderColor: COLORS.btnInValid, paddingHorizontal: 10, borderRadius: 10 }}>
                                         <TextInput
                                              multiline
@@ -357,11 +357,11 @@ export default function AddEkubMember({ route, navigation }) {
                          <View style={{ marginBottom: 50 }}>
                               {isValid === true ?
                                    (<TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary }]}>
-                                        <Text style={styles.submitButtonsText}>{"ይመዝግቡ"}</Text>
+                                        <Text style={[styles.mediumTextAm, { color: COLORS.offwhite }]}>ይመዝግቡ</Text>
                                    </TouchableOpacity>)
                                    :
                                    (<Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
-                                        <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ይመዝግቡ"}</Text>
+                                        <Text style={[styles.mediumTextAm, { color: COLORS.darkText }]}>ይመዝግቡ</Text>
                                    </Pressable>)
                               }
                          </View>

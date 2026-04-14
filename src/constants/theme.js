@@ -15,4 +15,10 @@ const COLORS = {
      gray2: "#83829A",
 };
 
-export { COLORS };
+const FONTS = {
+     regular: 'NotoEthiopic-Regular',
+     bold: 'NotoEthiopic-Bold',
+     medium: 'NotoEthiopic-Medium',
+};
+
+export { COLORS, FONTS };

@@ -23,6 +23,7 @@ import ListOfEkubRecipients from './src/screens/ListOfEkubRecipients';
 import { COLORS } from './src/constants/theme';
 import { StatusBar } from 'expo-status-bar';
 import styles from './src/styles/ComponentStyles';
+import { useFonts } from 'expo-font';
 
 
 // This app uses both navigations, the Stack Navigations and the Drawer Navigations togather.
@@ -41,7 +42,7 @@ function Root() {
         headerShown: true,
         drawerStyle: { width: "76%", },
         drawerActiveTintColor: "#006A4E",
-        drawerLabelStyle: [styles.smallText],
+        drawerLabelStyle: [styles.smallTextAm],
         drawerItemStyle: { borderRadius: 10, marginBottom: 10 }
       }}
       drawerContent={(props) => (<CustomDrawer {...props} />)}
@@ -63,7 +64,7 @@ function Root() {
           headerShown: true,
           drawerIcon: () => <FontAwesome6 name="circle-info" size={22} color={COLORS.primary} />,
           title: "ስለ ዳዊት እቁብ",
-          headerTitleStyle: [styles.headerText],
+          headerTitleStyle: [styles.headerTextAm],
           headerTintColor: COLORS.offwhite,
           headerStatusBarHeight: 30
         }}
@@ -74,7 +75,7 @@ function Root() {
         drawerIcon: () => <FontAwesome6 name="question-circle" size={22} color={COLORS.primary} />,
         title: "ለእገዛ",
         headerTitle: "ለእገዛ",
-        headerTitleStyle: [styles.headerText],
+        headerTitleStyle: [styles.headerTextAm],
         headerTintColor: COLORS.offwhite,
         headerStatusBarHeight: 30,
       }}
@@ -85,8 +86,17 @@ function Root() {
 
 
 export default function App() {
-  return (
+  const [fontsLoaded] = useFonts({
+    'NotoEthiopic': require('./assets/fonts/NotoSansEthiopic-Regular.ttf'),
+    'NotoEthiopic-Bold': require('./assets/fonts/NotoSansEthiopic-Bold.ttf'),
+    'NotoEthiopic-Medium': require('./assets/fonts/NotoSansEthiopic-Medium.ttf'),
+  });
 
+  if (!fontsLoaded) {
+    return null; // or loading screen
+  }
+
+  return (
     <NavigationContainer>
       <StatusBar style="light" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>

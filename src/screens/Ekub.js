@@ -104,7 +104,7 @@ export default function Ekub({ route, navigation }) {
                                         <View style={{ width: "90%" }}>
                                              <Text style={styles.mediumText}>{item.fullName}</Text>
                                              <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
-                                                  <Text style={styles.smallText}>{ekub.ekubType === "የቀን" && "እለታዊ ክፍያ"}{ekub.ekubType === "የሳምንት" && "ሳምንታዊ ክፍያ"}{ekub.ekubType === "የወር" && "ወርሃዊ ክፍያ"}</Text>
+                                                  <Text style={styles.smallTextAm}>{ekub.ekubType === "የቀን" && "እለታዊ ክፍያ"}{ekub.ekubType === "የሳምንት" && "ሳምንታዊ ክፍያ"}{ekub.ekubType === "የወር" && "ወርሃዊ ክፍያ"}</Text>
                                                   <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
                                                   <Text style={styles.smallText}>{formatCurrency(item.paymentAmount)}</Text>
                                              </View>
@@ -117,10 +117,10 @@ export default function Ekub({ route, navigation }) {
                               </View>
                               {visibleMenuIndex === index && (
                                    <View style={{ paddingHorizontal: 0, marginVertical: 10, marginHorizontal: 10, flexDirection: "row", alignItems: "center", justifyContent: "flex-end", gap: 10 }}>
-                                        <Text style={styles.smallText}>{"እጣ ቁጥር፡ "}</Text>
+                                        <Text style={styles.smallTextAm}>እጣ ቁጥር፡ </Text>
                                         <View style={{ maxWidth: "76%", flexDirection: "row", flexWrap: "wrap", justifyContent: "flex-end", gap: 10 }}>
                                              {memberLotNumber.length === 0 ?
-                                                  (<Text style={[styles.smallText, { color: COLORS.primary }]}>{"አልተሰየመም"}</Text>) : (showMemberLotNumber())
+                                                  (<Text style={[styles.smallTextAm, { color: COLORS.primary }]}>አልተሰየመም</Text>) : (showMemberLotNumber())
                                              }
                                         </View>
                                    </View>
@@ -156,7 +156,7 @@ export default function Ekub({ route, navigation }) {
                          <View style={[styles.contentContainer, { backgroundColor: COLORS.gray, padding: 5, marginTop: 20 }]}>
                               <View style={{ flexDirection: "row", gap: 20, marginLeft: 10, marginVertical: 20 }}>
                                    <Image source={require("../../assets/images/money-bag2.webp")} style={{ marginLeft: 10, height: 70, width: 70 }} />
-                                   <Text style={[styles.smallText, { width: "64%", textAlign: "justify" }]}>{"ይህ ባለ "}
+                                   <Text style={[styles.smallTextAm, { width: "64%", textAlign: "justify" }]}>{"ይህ ባለ "}
                                         <Text style={{ color: COLORS.primary }}>{formatCurrency(ekub.medebAmount)}</Text>{" መደብ የ "}
                                         <Text style={{ color: COLORS.primary }}>{ekub.duration}{ekub.ekubType === "የቀን" && " ቀን "}{ekub.ekubType === "የሳምንት" && " ሳምንት "}{ekub.ekubType === "የወር" && " ወር "}</Text>{"እቁብ ከ "}
                                         <Text style={{ color: COLORS.primary }}>{ekub.startDate}</Text>{" እስከ "}
@@ -170,7 +170,7 @@ export default function Ekub({ route, navigation }) {
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 142 }}>
                                                   <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                  <Text style={styles.smallText}>{"ጠቅላላ አባላት"}</Text>
+                                                  <Text style={styles.smallTextAm}>ጠቅላላ አባላት</Text>
                                              </View>
                                              <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
                                              <Text style={[styles.smallText, { marginLeft: 14 }]}>{ekubMember.length}</Text>
@@ -178,7 +178,7 @@ export default function Ekub({ route, navigation }) {
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 142 }}>
                                                   <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                  <Text style={styles.smallText}>{"የእጣው ብዛት"}</Text>
+                                                  <Text style={styles.smallTextAm}>የእጣው ብዛት</Text>
                                              </View>
                                              <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
                                              <Text style={[styles.smallText, { marginLeft: 14 }]}>{loteryNumber.length}</Text>
@@ -186,7 +186,7 @@ export default function Ekub({ route, navigation }) {
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 142 }}>
                                                   <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                  <Text style={styles.smallText}>{"ጠቅላላ የተሰበሰበ"}</Text>
+                                                  <Text style={styles.smallTextAm}>ጠቅላላ የተሰበሰበ</Text>
                                              </View>
                                              <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
                                              <Text style={[styles.smallText, { marginLeft: 14 }]}>{sumOfAllEkubMemberPayment === null ? (0) : formatCurrency(sumOfAllEkubMemberPayment)}</Text>
@@ -194,7 +194,7 @@ export default function Ekub({ route, navigation }) {
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 142 }}>
                                                   <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                  <Text style={styles.smallText}>{"የተፈጸመ ክፍያ"}</Text>
+                                                  <Text style={styles.smallTextAm}>የተፈጸመ ክፍያ</Text>
                                              </View>
                                              <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
                                              <Text style={[styles.smallText, { marginLeft: 14 }]}>{sumOfAllEkubRecipients === null ? (0) : formatCurrency(sumOfAllEkubRecipients)}</Text>
@@ -202,7 +202,7 @@ export default function Ekub({ route, navigation }) {
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 142 }}>
                                                   <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                  <Text style={styles.smallText}>{"ቀሪ ብር መጠን"}</Text>
+                                                  <Text style={styles.smallTextAm}>ቀሪ ብር መጠን</Text>
                                              </View>
                                              <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
                                              <Text style={[styles.smallText, { marginLeft: 14 }]}>{formatCurrency(sumOfAllEkubMemberPayment - sumOfAllEkubRecipients)}</Text>
@@ -212,11 +212,11 @@ export default function Ekub({ route, navigation }) {
                                    <View style={[styles.resultContainer, { marginTop: 20, justifyContent: "space-between" }]}>
                                         <TouchableOpacity onPress={() => navigation.navigate("ListOfEkubRecipients", { ekubId: ekub.id })} style={[styles.lightButtons, { width: "48%", }]}>
                                              <FontAwesome6 name="list-check" size={18} color={COLORS.primary} />
-                                             <Text style={styles.smallText}>{"እቁብ የደረሳቸው"}</Text>
+                                             <Text style={styles.smallTextAm}>እቁብ የደረሳቸው</Text>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => navigation.navigate("ManageLotNumber", { ekubId: ekub.id })} style={[styles.lightButtons, { width: "48%", }]}>
                                              <MaterialCommunityIcons name="slot-machine" size={20} color={COLORS.primary} />
-                                             <Text style={styles.smallText}>{"እጣ ማውጫ"}</Text>
+                                             <Text style={styles.smallTextAm}>እጣ ማውጫ</Text>
                                         </TouchableOpacity>
                                    </View>
                               </View>
@@ -225,23 +225,23 @@ export default function Ekub({ route, navigation }) {
                                    <TouchableOpacity onPress={() => navigation.navigate("PaymentList", { ekubId: ekub.id })}
                                         style={[styles.moreBtn, { borderTopRightRadius: 10, borderBottomLeftRadius: 16 }]}>
                                         <FontAwesome6 name="list-check" size={18} color={COLORS.offwhite} />
-                                        <Text style={[styles.smallText, { color: COLORS.offwhite }]}>{"የክፍያ ዝርዝር"}</Text>
+                                        <Text style={[styles.smallTextAm, { color: COLORS.offwhite }]}>የክፍያ ዝርዝር</Text>
                                    </TouchableOpacity>
 
 
                                    <TouchableOpacity onPress={() => navigation.navigate("AddEkubMember", { ekubId: ekub.id, ekubMedeb: ekub.medebAmount })}
                                         style={[styles.moreBtn, { borderTopLeftRadius: 10, borderBottomRightRadius: 16 }]}>
-                                        <Text style={[styles.smallText, { color: COLORS.offwhite }]}>{"አባል ይጨምሩ"}</Text>
+                                        <Text style={[styles.smallTextAm, { color: COLORS.offwhite }]}>አባል ይጨምሩ</Text>
                                         <Ionicons name="person-add" size={18} color={COLORS.offwhite} />
                                    </TouchableOpacity>
                               </View>
                          </View>
                          {ekubMember.length === 0 ?
                               <View style={[styles.modalContainer, { backgroundColor: COLORS.gray, marginTop: 100, marginHorizontal: 30, marginBottom: 80, borderRadius: 10, height: 300, gap: 20 }]}>
-                                   <Text style={[styles.smallText, { color: COLORS.primary }]}>{"ምንም እቁብተኛ አልመዘገቡም"}</Text>
+                                   <Text style={[styles.smallTextAm, { color: COLORS.primary }]}>ምንም እቁብተኛ አልመዘገቡም</Text>
                                    <TouchableOpacity onPress={() => navigation.navigate('AddEkubMember', { ekubId: ekub.id, ekubMedeb: ekub.medebAmount })}
                                         style={styles.lightButtons}>
-                                        <Text style={styles.smallText}>{"ይመዝግቡ"}</Text>
+                                        <Text style={styles.smallTextAm}>ይመዝግቡ</Text>
                                         <Ionicons name="person-add" size={18} color={COLORS.primary} />
                                    </TouchableOpacity>
                               </View>

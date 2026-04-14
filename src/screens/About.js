@@ -20,32 +20,32 @@ export default function About({ navigation }) {
                          size={110}
                          source={require("../../assets/images/moneyLogo2.png")}
                     />
-                    <Text style={[styles.largText, { color: COLORS.primary }]}>{"Dawit Ekub"}</Text>
+                    <Text style={[styles.largText, { color: COLORS.primary }]}>Dawit Ekub</Text>
                     <Text style={styles.smallText}>{`Version: ${currentAppVersion}`}</Text>
                </View>
 
                <View style={{ margin: 20, gap: 20 }}>
-                    <Text style={[styles.smallText, { textAlign: "justify" }]}>
-                         {"በ እልልቴክ ሲስተምስ (Eleltech Systems) ተዘጋጅቶ የቀረበላችሁ ዳዊት እቁብ መተግበሪያ ለእቁብ ብር ሰብሳቢዎች ወይም አስተዳዳሪዎች ጥሩ መፍትሄ ይዞ የመጣ ሲሆን እቁብ ሰብሳቢ ለሆናችሁ እቁባችሁን በቀላሉ ለማስተዳደር ይጠቅማችኋል።"}
+                    <Text style={[styles.smallTextAm, { textAlign: "justify" }]}>
+                         በ እልልቴክ ሲስተምስ (Eleltech Systems) ተዘጋጅቶ የቀረበላችሁ ዳዊት እቁብ መተግበሪያ ለእቁብ ብር ሰብሳቢዎች ወይም አስተዳዳሪዎች ጥሩ መፍትሄ ይዞ የመጣ ሲሆን እቁብ ሰብሳቢ ለሆናችሁ እቁባችሁን በቀላሉ ለማስተዳደር ይጠቅማችኋል።"
                     </Text>
-                    <Text style={[styles.smallText, { textAlign: "justify" }]}>
-                         {"ሶስት የተለያዩ እቁቦችን ማለትም የቀን ፣ የሳምንት ፣ እንዲሁም የወር እቁቦችን በተቀላጠፈ ሁኔታ በፈለጉት መጠን እና አይነት ለማስተዳደር ያግዛል። "}
+                    <Text style={[styles.smallTextAm, { textAlign: "justify" }]}>
+                         ሶስት የተለያዩ እቁቦችን ማለትም የቀን ፣ የሳምንት ፣ እንዲሁም የወር እቁቦችን በተቀላጠፈ ሁኔታ በፈለጉት መጠን እና አይነት ለማስተዳደር ያግዛል። "
                     </Text>
-                    <Text style={[styles.smallText, { textAlign: "justify" }]}>
-                         {"እቁብዎን ሲጀምሩ የእቁብ አይነት ፣ የሚጀመርበትን ቀን ፣ ሙሉ መደብ ብር መጠን እና የምን ያህል የጊዜ ቆይታ ሊኖረው እንደሚችል ቀድመው መወሰን የሚጠበቅቦት ሲሆን መተግበርያው በዚህ መረጃ ላይ ተመስርቶ እቁብዎ በሙሉ መደብ ደራሽ ምን ያህል ገንዘብ እንደሆነ እና መቼ እንደሚጠናቅቅ ከመጀምርዎ በፊት ያሳውቆታል። በዚህ መረጃ ላይ ተመስርተው የጊዜ ቆይታውን እና የደራሽ ብር መጠን ለማስተካከል ያግዝዎታል።"}
+                    <Text style={[styles.smallTextAm, { textAlign: "justify" }]}>
+                         እቁብዎን ሲጀምሩ የእቁብ አይነት ፣ የሚጀመርበትን ቀን ፣ ሙሉ መደብ ብር መጠን እና የምን ያህል የጊዜ ቆይታ ሊኖረው እንደሚችል ቀድመው መወሰን የሚጠበቅቦት ሲሆን መተግበርያው በዚህ መረጃ ላይ ተመስርቶ እቁብዎ በሙሉ መደብ ደራሽ ምን ያህል ገንዘብ እንደሆነ እና መቼ እንደሚጠናቅቅ ከመጀምርዎ በፊት ያሳውቆታል። በዚህ መረጃ ላይ ተመስርተው የጊዜ ቆይታውን እና የደራሽ ብር መጠን ለማስተካከል ያግዝዎታል።
                     </Text>
-                    <Text style={[styles.smallText, { textAlign: "justify" }]}>
-                         {"እቁብዎን ከጀመሩ ቦሀላ በጀመሩት እቁብ አይነት ስር የእቁብ አባሎችዎን መረጃ እና የክፍያ ብር መጠን የሚመዘግብላችሁ ሲሆን የእያንዳንዱን አባልዎችዎን የክፍያ እና አጠቃላይ የእቁብ እንቅስቃሴ ለመቆጣጠር የሚያችለውን የአባል መለያ ገጽ የሚያዘጋጅልዎ ይሆናል። በአባልዎ መለያ ገጽ ውስጥም የአባልዎን መረጃ ለማስተካከል ወይንም ለመሰረዝ ፣ ዕጣ ቁጥር ለመሰየም ፣ ክፍያ ለመቀበል ፣ እንዲሁም ደራሽ ክፍያ ለመፈፀም ፣ የክፍያውን ማስረጃ መልእክት ለመላክ ፣ የየግዜውን እና የጠቅላላ ክፍያ መረጃ እንዲሁም እስከ የትኛው ቀን ክፍያው እንደተከናወነ ለማወቅ እና ሌሎች አገልግሎቶችን ያገኛሉ። "}
+                    <Text style={[styles.smallTextAm, { textAlign: "justify" }]}>
+                         እቁብዎን ከጀመሩ ቦሀላ በጀመሩት እቁብ አይነት ስር የእቁብ አባሎችዎን መረጃ እና የክፍያ ብር መጠን የሚመዘግብላችሁ ሲሆን የእያንዳንዱን አባልዎችዎን የክፍያ እና አጠቃላይ የእቁብ እንቅስቃሴ ለመቆጣጠር የሚያችለውን የአባል መለያ ገጽ የሚያዘጋጅልዎ ይሆናል። በአባልዎ መለያ ገጽ ውስጥም የአባልዎን መረጃ ለማስተካከል ወይንም ለመሰረዝ ፣ ዕጣ ቁጥር ለመሰየም ፣ ክፍያ ለመቀበል ፣ እንዲሁም ደራሽ ክፍያ ለመፈፀም ፣ የክፍያውን ማስረጃ መልእክት ለመላክ ፣ የየግዜውን እና የጠቅላላ ክፍያ መረጃ እንዲሁም እስከ የትኛው ቀን ክፍያው እንደተከናወነ ለማወቅ እና ሌሎች አገልግሎቶችን ያገኛሉ።
                     </Text>
-                    <Text style={[styles.smallText, { textAlign: "justify" }]}>
-                         {"በዋናው የእቁብዎ ገፅ ላይ አባልዎችዎ በሚጥሉት እቁብ ብር መጠን ላይ ተመስርቶ ዝርዝራቸውን የሚያስቀምጥላችሁ ሲሆን የአባልዎ ብዛት ፣ የእጣ ብዛት ፣ አጠቃላይ የሰበሰቡት የብር መጠን ፣ አጠቃላይ የፈፀሙት የደራሽ ብር ክፍያ መጠን ፣ እንዲሁም ቀሪ የገንዘብ መጠንዎን በቀላሉ ለማወቅ የሚያስችልዎት ሲሆን በዚህም ላይ ዕጣ ከማውጣት ጨምሮ ሌሎች አገልግሎቶችን ያገኛሉ።"}
+                    <Text style={[styles.smallTextAm, { textAlign: "justify" }]}>
+                         በዋናው የእቁብዎ ገፅ ላይ አባልዎችዎ በሚጥሉት እቁብ ብር መጠን ላይ ተመስርቶ ዝርዝራቸውን የሚያስቀምጥላችሁ ሲሆን የአባልዎ ብዛት ፣ የእጣ ብዛት ፣ አጠቃላይ የሰበሰቡት የብር መጠን ፣ አጠቃላይ የፈፀሙት የደራሽ ብር ክፍያ መጠን ፣ እንዲሁም ቀሪ የገንዘብ መጠንዎን በቀላሉ ለማወቅ የሚያስችልዎት ሲሆን በዚህም ላይ ዕጣ ከማውጣት ጨምሮ ሌሎች አገልግሎቶችን ያገኛሉ።
                     </Text>
-                    <Text style={[styles.smallText, { textAlign: "justify" }]}>
-                         {"ሌላውና ዋነኛው ነገር ይህ መተግበሪያ ጠቅላላ የሚያስተዳድርላችሁን ሙሉ የእቁብዎን መረጃ ደህንነቱ የተጠበቀ እንዲሆን ለማስቻል ሙሉ የእቁብዎን ምትክ መረጃ በመረጡት ቦታ ላይ ለማስቀመጥ እና ባልተጠበቀ አጋጣሚ ስልክዎ ቢጠፋ ሙሉ ምትክ መረጃውን መልሰው ለማግኘት የሚያችሎት ነዉ።"}
+                    <Text style={[styles.smallTextAm, { textAlign: "justify" }]}>
+                         ሌላውና ዋነኛው ነገር ይህ መተግበሪያ ጠቅላላ የሚያስተዳድርላችሁን ሙሉ የእቁብዎን መረጃ ደህንነቱ የተጠበቀ እንዲሆን ለማስቻል ሙሉ የእቁብዎን ምትክ መረጃ በመረጡት ቦታ ላይ ለማስቀመጥ እና ባልተጠበቀ አጋጣሚ ስልክዎ ቢጠፋ ሙሉ ምትክ መረጃውን መልሰው ለማግኘት የሚያችሎት ነዉ።
                     </Text>
-                    <Text style={[styles.smallText, { textAlign: "justify" }]}>
-                         {"እቁብዎን በሚጀምሩበት እና በሚያስተዳድሩበት ወቅት የሚያስቸግርዎ አንዳንድ ጉዳዮች ካሉ ወደ እገዛ ገፅ ገብተው በተለያየ ርዕስ ስር የተዘረዘሩ ማብራሪያዎችን ይመልከቱ። "}
-                         <Text onPress={() => navigation.navigate("Help")} style={{ color: "blue", textDecorationLine: 'underline' }}>
+                    <Text style={[styles.smallTextAm, { textAlign: "justify" }]}>
+                         እቁብዎን በሚጀምሩበት እና በሚያስተዳድሩበት ወቅት የሚያስቸግርዎ አንዳንድ ጉዳዮች ካሉ ወደ እገዛ ገፅ ገብተው በተለያየ ርዕስ ስር የተዘረዘሩ ማብራሪያዎችን ይመልከቱ።
+                         <Text onPress={() => navigation.navigate("Help")} style={[styles.smallTextAm, { color: "blue", textDecorationLine: 'underline' }]}>
                               {" እገዛ-ከፈለጉ "}
                          </Text>
                     </Text>
@@ -74,23 +74,23 @@ export default function About({ navigation }) {
                          </View>
 
                     </View>
-                    <Text style={[styles.about, { textAlign: "center", paddingHorizontal: 20, color: COLORS.primary }]} onPress={() => handleUrlPress("https://www.eleltech.com/dawit-ekub-terms-conditions.html")}>
-                         {"የአጠቃቀም ደንቦች እና ሁኔታዎች (Terms and Conditions of Use)"}
+                    <Text style={[styles.smallTextAm, { textAlign: "center", paddingHorizontal: 20, color: COLORS.primary }]} onPress={() => handleUrlPress("https://www.eleltech.com/dawit-ekub-terms-conditions.html")}>
+                         የአጠቃቀም ደንቦች እና ሁኔታዎች (Terms and Conditions of Use)
                     </Text>
 
                     <View style={{ backgroundColor: COLORS.gray, borderRadius: 12, marginVertical: 20 }}>
-                         <Text style={[styles.smallText, { marginTop: 10, textAlign: "center" }]}>
-                              {"ይህን መተግበሪያ ድንገት በሞት ለተለየን ወንድማች መታሰቢያ ይሆን ዘንድ ዳዊት እቁብ ብለን ሰይመናል።"}
+                         <Text style={[styles.xSmallTextAm, { marginTop: 10, textAlign: "center" }]}>
+                              ይህን መተግበሪያ ድንገት በሞት ለተለየን ወንድማች መታሰቢያ ይሆን ዘንድ ዳዊት እቁብ ብለን ሰይመናል።
                          </Text>
                          <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: "#acbbc2", margin: 8, borderRadius: 10, gap: 10, padding: 5 }}>
                               <Avatar
                                    rounded
-                                   size={60}
+                                   size={50}
                                    source={require("../../assets/images/dawit2.webp")}
                               />
                               <View>
-                                   <Text style={styles.smallText}>ዳዊት ዘርጋባቸው ዘውዴ</Text>
-                                   <Text style={{ fontSize: 14 }}>ከ 1997 - ሚያዝያ 19/2017 ዓ.ም</Text>
+                                   <Text style={styles.smallTextAm}>ዳዊት ዘርጋባቸው ዘውዴ</Text>
+                                   <Text style={styles.smallTextAm}>ከ 1997 - ሚያዝያ 19/2017 ዓ.ም</Text>
                               </View>
                          </View>
                     </View>

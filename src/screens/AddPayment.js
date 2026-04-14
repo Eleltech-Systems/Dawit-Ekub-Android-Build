@@ -69,7 +69,7 @@ export default function AddPayment({ route, navigation }) {
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                          <FontAwesome6 name="arrow-left" size={20} color={COLORS.offwhite} />
                     </TouchableOpacity>
-                    <Text style={styles.headerText}>{"ክፍያ ይቀበሉ"}</Text>
+                    <Text style={styles.headerTextAm}>ክፍያ ይቀበሉ</Text>
                     <Text></Text>
                </View>
                <KeyboardAvoidingView
@@ -83,7 +83,7 @@ export default function AddPayment({ route, navigation }) {
 
                          <View style={styles.allInputContainer}>
                               <View style={styles.inputContainer}>
-                                   <Text style={styles.mediumText}>{"የክፍያ ብር መጠን፡"}</Text>
+                                   <Text style={styles.mediumTextAm}>የክፍያ ብር መጠን፡</Text>
                                    <Controller
                                         control={control}
                                         rules={{ required: "የክፍያ መጠን ይምረጡ" }}
@@ -104,22 +104,21 @@ export default function AddPayment({ route, navigation }) {
                                              />
                                         )}
                                    />
-                                   {errors.selectedPayment && <Text style={styles.inputErrorText}>{errors.selectedPayment.message}</Text>}
+                                   {errors.selectedPayment && <Text style={styles.inputErrorTextAm}>{errors.selectedPayment.message}</Text>}
                               </View>
                          </View>
 
                          {message !== '' &&
-                              <><Text style={styles.errorText}>{message}</Text></>
+                              <><Text style={styles.errorTextAm}>{message}</Text></>
                          }
-
 
                          {isValid === true ?
                               (<TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary, marginTop: 20 }]}>
-                                   <Text style={styles.submitButtonsText}>{"ይመዝግቡ"}</Text>
+                                   <Text style={[styles.mediumTextAm, { color: COLORS.offwhite }]}>ይመዝግቡ</Text>
                               </TouchableOpacity>)
                               :
                               (<Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
-                                   <Text style={[styles.submitButtonsText, { color: COLORS.darkText }]}>{"ይመዝግቡ"}</Text>
+                                   <Text style={styles.mediumTextAm}>ይመዝግቡ</Text>
                               </Pressable>)
                          }
                     </ScrollView>

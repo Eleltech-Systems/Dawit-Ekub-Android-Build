@@ -2,7 +2,7 @@
   "expo": {
     "name": "Dawit Ekub",
     "slug": "dawit-ekub",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "owner": "eleltech-systems",
     "orientation": "portrait",
     "icon": "./assets/icons/ios-light.png",
@@ -22,6 +22,7 @@
       }
     },
     "android": {
+      "versionCode": 11,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icons/adaptive-icon.png",
         "backgroundColor": "#ffffff"

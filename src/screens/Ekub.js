@@ -96,12 +96,12 @@ export default function Ekub({ route, navigation }) {
                     <View key={index} style={{ marginHorizontal: 10 }}>
                          <TouchableOpacity onPress={() => navigation.navigate("EkubMember", { ekubTypeId: ekubId, ekubMemberId: item.id, startDate: ekub.startDate })}
                               style={{ backgroundColor: COLORS.secondary2, marginTop: 20, borderRadius: 8, }}>
-                              <View style={[styles.basicStyle, { marginHorizontal: 8, marginVertical: 5 }]}>
-                                   <View style={styles.orderedNumBox}>
-                                        <Text style={[styles.largText, { color: COLORS.offwhite }]}>{index + 1}</Text>
-                                   </View>
-                                   <View style={{ width: "84%", flexDirection: "row", justifyContent: "space-between" }}>
-                                        <View style={{ width: "90%" }}>
+                              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginHorizontal: 5, marginVertical: 5 }}>
+                                   <View style={{ flexDirection: 'row' }}>
+                                        <View style={styles.orderedNumBox}>
+                                             <Text style={[styles.largText, { color: COLORS.offwhite }]}>{index + 1}</Text>
+                                        </View>
+                                        <View>
                                              <Text style={styles.mediumText}>{item.fullName}</Text>
                                              <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
                                                   <Text style={styles.smallTextAm}>{ekub.ekubType === "የቀን" && "እለታዊ ክፍያ"}{ekub.ekubType === "የሳምንት" && "ሳምንታዊ ክፍያ"}{ekub.ekubType === "የወር" && "ወርሃዊ ክፍያ"}</Text>
@@ -109,11 +109,11 @@ export default function Ekub({ route, navigation }) {
                                                   <Text style={styles.smallText}>{formatCurrency(item.paymentAmount)}</Text>
                                              </View>
                                         </View>
-                                        <Pressable onPress={() => { toggleMenu(index), handleSeeMore(item.id) }} style={{ justifyContent: "center" }}>
-                                             {visibleMenuIndex === index ? (<MaterialCommunityIcons name="close" size={20} color="black" />) :
-                                                  (<Entypo name="chevron-down" size={20} color="black" />)}
-                                        </Pressable>
                                    </View>
+                                   <Pressable onPress={() => { toggleMenu(index), handleSeeMore(item.id) }} style={{ justifyContent: "center" }}>
+                                        {visibleMenuIndex === index ? (<MaterialCommunityIcons name="close" size={20} color="black" />) :
+                                             (<Entypo name="chevron-down" size={20} color="black" />)}
+                                   </Pressable>
                               </View>
                               {visibleMenuIndex === index && (
                                    <View style={{ paddingHorizontal: 0, marginVertical: 10, marginHorizontal: 10, flexDirection: "row", alignItems: "center", justifyContent: "flex-end", gap: 10 }}>

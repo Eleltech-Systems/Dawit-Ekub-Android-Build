@@ -61,27 +61,27 @@ export default function ListOfEkubRecipients({ route, navigation }) {
                               <Text style={{ color: COLORS.primary }}>{item.dateOfPayment}</Text>
                          </View>
 
-                         <View style={{ backgroundColor: COLORS.secondary, marginBottom: 20, borderRadius: 8 }}>
-                              <View style={[styles.resultContainer, { marginHorizontal: 8, marginVertical: 5 }]}>
-                                   <View style={styles.orderedNumBox}>
-                                        <Text style={[styles.largTextAm, { color: COLORS.offwhite }]}>{(array.length - 1) - (index - 1)}{"ኛ"}</Text>
-                                   </View>
-
-                                   <View style={{ width: "84%", flexDirection: "row", justifyContent: "space-between" }}>
-                                        <View style={{ width: "90%" }}>
+                         <View style={{ backgroundColor: COLORS.secondary, marginBottom: 20, borderRadius: 8, padding: 5 }}>
+                              <View style={[styles.resultContainer, { width: '100%', flexDirection: 'row', flexDirection: "row", justifyContent: "space-between" }]}>
+                                   <View style={{ flexDirection: "row" }}>
+                                        <View style={styles.orderedNumBox}>
+                                             <Text style={[styles.largTextAm, { color: COLORS.offwhite }]}>{(array.length - 1) - (index - 1)}{"ኛ"}</Text>
+                                        </View>
+                                        <View style={{}}>
                                              <Text style={styles.mediumText}>{item.takerName}</Text>
                                              <View style={[styles.resultContainer, { gap: 12 }]}>
                                                   <Text style={styles.smallTextAm}>የብር መጠን</Text>
                                                   <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
-                                                  <Text style={[styles.smallText, { width: "58%" }]}>{formatCurrency(item.moneyAmount)}</Text>
+                                                  <Text style={[styles.smallText]}>{formatCurrency(item.moneyAmount)}</Text>
                                              </View>
                                         </View>
-                                        <TouchableOpacity onPress={() => { toggleMenu(index), setLoadingForDelete(false), setMessage('') }}
-                                             style={{ justifyContent: "center" }}>
-                                             {visibleMenuIndex === index ? (<MaterialCommunityIcons name="close" size={20} color="black" />) :
-                                                  (<Entypo name="chevron-down" size={20} color="black" />)}
-                                        </TouchableOpacity>
+
                                    </View>
+                                   <TouchableOpacity onPress={() => { toggleMenu(index), setLoadingForDelete(false), setMessage('') }}
+                                        style={{ justifyContent: "center" }}>
+                                        {visibleMenuIndex === index ? (<MaterialCommunityIcons name="close" size={20} color="black" />) :
+                                             (<Entypo name="chevron-down" size={20} color="black" />)}
+                                   </TouchableOpacity>
                               </View>
 
                               {visibleMenuIndex === index && (

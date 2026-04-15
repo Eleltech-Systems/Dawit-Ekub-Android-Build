@@ -64,8 +64,21 @@ export default function EkubMember({ route, navigation }) {
                return;
           }
 
+          let paymentComplete = '';
+          if (ekub.ekubType === "የቀን" && ekub.duration - (duration + 1) === 0) {
+               paymentComplete = "\n🙏 ክፍያዎን ጨርሰዋል 🙏"
+          }
+
+          if (ekub.ekubType === "የሳምንት" && (ekub.duration - (duration + 1) / 7) === 0) {
+               paymentComplete = "\n🙏 ክፍያዎን ጨርሰዋል 🙏"
+          }
+
+          if (ekub.ekubType === "የወር" && (ekub.duration - (duration + 1) / 30) === 0) {
+               paymentComplete = "\n🙏 ክፍያዎን ጨርሰዋል 🙏"
+          }
+
           const phoneNumber = ekubMember.phoneNumber;
-          const message = `- ${ekub.ekubName} -\nቀን፡ ${paymentDate}\nብር፡ ${formatCurrency(paymentAmount)}\nእስከ፡ ${newDate}\nጠቅላላ፡ ${formatCurrency(sumOfPayment)}`
+          const message = `- ${ekub.ekubName} -\nቀን፡ ${paymentDate}\nብር፡ ${formatCurrency(paymentAmount)}\nእስከ፡ ${newDate}\nጠቅላላ፡ ${formatCurrency(sumOfPayment)}${paymentComplete}`
           const { result } = await SMS.sendSMSAsync([phoneNumber], message);
      };
 
@@ -147,46 +160,46 @@ export default function EkubMember({ route, navigation }) {
      const showMemberPaymentList = () => {
           return memberPayment.map((item, index) => {
                return (
-                    <View key={index} style={{ width: "100%", marginTop: 10, flexDirection: "row", justifyContent: "space-between", }}>
-                         <View style={{ width: "25%", borderColor: COLORS.secondary, borderWidth: 2, borderRadius: 6, justifyContent: "center", marginTop: 8 }}>
-                              <Text style={{ paddingHorizontal: 4, color: COLORS.primary }}>{item.paymentDate}</Text>
-                         </View>
-
-                         <View style={{ width: "74%", backgroundColor: COLORS.secondary2, borderRadius: 6, marginTop: 8 }}>
-                              <View style={[styles.resultContainer, { justifyContent: "space-between", padding: 10 }]}>
-                                   <View style={[styles.resultContainer, { gap: 10 }]}>
+                    <View key={index} style={{ width: "100%", marginTop: 10, backgroundColor: COLORS.secondary, borderRadius: 8 }}>
+                         <View style={{ flexDirection: "row", alignItems: 'center', justifyContent: 'space-between', padding: 5 }}>
+                              <View style={{ flexDirection: 'row' }}>
+                                   <View style={{ backgroundColor: COLORS.offwhite, paddingVertical: 8, width: 90, borderRadius: 5 }}>
+                                        <Text style={{ paddingHorizontal: 4, color: COLORS.primary }}>{item.paymentDate}</Text>
+                                   </View>
+                                   <View style={[{ flexDirection: 'row', gap: 10, padding: 8, }]}>
                                         <Text style={styles.smallTextAm}>የተከፈለ ብር፡ </Text>
                                         <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
-                                        <Text style={[styles.smallText, { maxWidth: "46%" }]}>{formatCurrency(item.paymentAmount)}</Text>
+                                        <Text style={[styles.smallText, { maxWidth: 120 }]}>{formatCurrency(item.paymentAmount)}</Text>
                                    </View>
-                                   <Pressable onPress={() => { toggleMenu(index), setLoading2(false) }}>
-                                        {visibleMenuIndex === index ? (
-                                             <MaterialCommunityIcons name="close" size={20} color="black" />
-                                        ) : (
-                                             <Entypo name="chevron-down" size={20} color="black" />
-                                        )}
-                                   </Pressable>
                               </View>
-                              {visibleMenuIndex === index && ( // Only show the menu for the first item
-                                   <View style={[styles.resultContainer, { justifyContent: "space-around", gap: 30, paddingHorizontal: 50, paddingVertical: 10 }]}>
-                                        {loading2 === true ?
-                                             <ActivityIndicator size="small" color={COLORS.primary} />
-                                             :
-                                             <TouchableOpacity onPress={() => onPaymentDelete(item.id)}
-                                                  style={[styles.lightButtons, { paddingVertical: 2 }]}>
-                                                  <Text style={styles.smallTextAm}>ይሰርዙ</Text>
-                                                  <FontAwesome6 name="trash" size={16} color={COLORS.primary} />
-                                             </TouchableOpacity>
-                                        }
-
-                                        {index === 0 && (
-                                             <TouchableOpacity onPress={() => handleSendMessage(item.paymentDate, item.paymentAmount)}>
-                                                  <MaterialCommunityIcons name="message-text" size={24} color={COLORS.primary} />
-                                             </TouchableOpacity>
-                                        )}
-                                   </View>
-                              )}
+                              <Pressable onPress={() => { toggleMenu(index), setLoading2(false) }}>
+                                   {visibleMenuIndex === index ? (
+                                        <MaterialCommunityIcons name="close" size={20} color="black" />
+                                   ) : (
+                                        <Entypo name="chevron-down" size={20} color="black" />
+                                   )}
+                              </Pressable>
                          </View>
+
+                         {visibleMenuIndex === index &&  // Only show the menu for the first item
+                              <View style={[styles.resultContainer, { paddingVertical: 10, justifyContent: 'flex-end', paddingHorizontal: 30, gap: 30 }]}>
+                                   {loading2 === true ?
+                                        <ActivityIndicator size="small" color={COLORS.primary} />
+                                        :
+                                        <TouchableOpacity onPress={() => onPaymentDelete(item.id)}
+                                             style={[styles.lightButtons, { paddingVertical: 2 }]}>
+                                             <Text style={styles.smallTextAm}>ይሰርዙ</Text>
+                                             <FontAwesome6 name="trash" size={16} color={COLORS.primary} />
+                                        </TouchableOpacity>
+                                   }
+
+                                   {index === 0 && (
+                                        <TouchableOpacity onPress={() => handleSendMessage(item.paymentDate, item.paymentAmount)}>
+                                             <MaterialCommunityIcons name="message-text" size={24} color={COLORS.primary} />
+                                        </TouchableOpacity>
+                                   )}
+                              </View>
+                         }
                     </View>
                );
           });
@@ -220,25 +233,26 @@ export default function EkubMember({ route, navigation }) {
                          <View style={[styles.contentContainer, { marginTop: 10 }]}>
                               <View style={{ backgroundColor: COLORS.secondary, borderTopLeftRadius: 18, borderTopRightRadius: 18 }}>
                                    <View style={{ flexDirection: "row", paddingHorizontal: 14, paddingVertical: 16, justifyContent: "space-between" }}>
-                                        <Image source={require('../../assets/images/profile-picture.png')} style={{ height: 80, width: 80, alignSelf: "center" }} />
-                                        <View style={{ maxWidth: "66%", gap: 5 }}>
-                                             <Text style={styles.largText}>{ekubMember.fullName}</Text>
-                                             <View style={[styles.resultContainer, { gap: 5 }]}>
-                                                  <TouchableOpacity onPress={() => handleCallNumber()}
-                                                       style={[styles.basicStyle, { backgroundColor: COLORS.primary, borderRadius: 5, paddingHorizontal: 5, paddingVertical: 2, gap: 5 }]}>
-                                                       <Text style={[styles.smallTextAm, { color: COLORS.offwhite }]}>ስልክ ቁ.</Text>
-                                                       <Ionicons name="call" size={18} color={COLORS.offwhite} />
-                                                  </TouchableOpacity>
-                                                  <Text style={[styles.smallText, { width: "60%" }]}>{ekubMember.phoneNumber}</Text>
-                                             </View>
-
-                                             <View style={[styles.resultContainer, { gap: 7 }]}>
-                                                  <Text style={styles.smallTextAm}>
-                                                       {ekub.ekubType === "የቀን" && "እለታዊ ክፍያ፡ "}
-                                                       {ekub.ekubType === "የሳምንት" && "ሳምንታዊ ክፍያ፡ "}
-                                                       {ekub.ekubType === "የወር" && "ወርሃዊ ክፍያ፡ "}
-                                                  </Text>
-                                                  <Text style={[styles.smallText, { width: '60%' }]}>{formatCurrency(ekubMember.paymentAmount)}</Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                                             <Image source={require('../../assets/images/profile-picture.png')} style={{ height: 80, width: 80, alignSelf: "center" }} />
+                                             <View style={{ borderWidth: 0, maxWidth: 250, overflow: 'hidden', gap: 5 }}>
+                                                  <Text style={styles.largText}>{ekubMember.fullName}</Text>
+                                                  <View style={{ flexDirection: 'row', gap: 10 }}>
+                                                       <TouchableOpacity onPress={() => handleCallNumber()}
+                                                            style={[styles.basicStyle, { backgroundColor: COLORS.primary, borderRadius: 5, paddingHorizontal: 5, paddingVertical: 2, gap: 5 }]}>
+                                                            <Text style={[styles.smallTextAm, { color: COLORS.offwhite }]}>ስልክ ቁ.</Text>
+                                                            <Ionicons name="call" size={18} color={COLORS.offwhite} />
+                                                       </TouchableOpacity>
+                                                       <Text style={[styles.smallText, {}]}>{ekubMember.phoneNumber}</Text>
+                                                  </View>
+                                                  <View style={[styles.resultContainer, { gap: 10 }]}>
+                                                       <Text style={styles.smallTextAm}>
+                                                            {ekub.ekubType === "የቀን" && "እለታዊ ክፍያ፡ "}
+                                                            {ekub.ekubType === "የሳምንት" && "ሳምንታዊ ክፍያ፡ "}
+                                                            {ekub.ekubType === "የወር" && "ወርሃዊ ክፍያ፡ "}
+                                                       </Text>
+                                                       <Text style={[styles.smallText, {}]}>{formatCurrency(ekubMember.paymentAmount)}</Text>
+                                                  </View>
                                              </View>
                                         </View>
                                         <View style={{ justifyContent: "flex-end" }}>
@@ -247,6 +261,7 @@ export default function EkubMember({ route, navigation }) {
                                                        (<Entypo name="chevron-down" size={20} color="black" />)}
                                              </Pressable>
                                         </View>
+
                                    </View>
                                    <View style={[styles.resultContainer, { gap: 10, justifyContent: "space-evenly", margin: 10 }]}>
                                         <TouchableOpacity onPress={() => setVisible(true)} style={[styles.lightButtons, { width: "30%", paddingVertical: 3 }]}>
@@ -352,28 +367,34 @@ export default function EkubMember({ route, navigation }) {
                               <View style={{ padding: 10, width: "100%", borderRadius: 10, marginVertical: 20 }}>
                                    {memberPayment.length !== 0 &&
                                         <View style={{ backgroundColor: COLORS.secondary2, padding: 10, gap: 3, borderRadius: 10 }}>
-                                             <View style={[styles.resultContainer, { gap: 8, width: "100%" }]}>
-                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                  <Text style={[styles.smallTextAm, { width: "28%" }]}>የተከፈለው</Text>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: "100%", flexWrap: 'wrap' }}>
+                                                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, width: 130 }}>
+                                                       <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                       <Text style={styles.smallTextAm}>የተከፈለው</Text>
+                                                  </View>
                                                   <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                                  <Text style={styles.smallTextAm}>
+                                                  <Text style={[styles.smallText, { marginLeft: 8 }]}>
                                                        {"የ"} {(ekub.ekubType === "የቀን" && `${duration + 1} ቀን  /  `)}{(ekub.ekubType === "የሳምንት" && `${(duration + 1) / 7} ሳምንት  /  `)}{(ekub.ekubType === 'የወር' && `${(duration + 1) / 30} ወር  /  `)}
                                                        {(ekub.ekubType === "የቀን" && (ekub.duration - (duration + 1) === 0 ? <Text style={{ color: "green" }}>አጠናቀዋል</Text> : `ቀሪ ${ekub.duration - (duration + 1)} ቀን`))}
                                                        {(ekub.ekubType === "የሳምንት" && (ekub.duration - ((duration + 1) / 7) === 0 ? <Text style={{ color: "green" }}>አጠናቀዋል</Text> : `ቀሪ ${ekub.duration - ((duration + 1) / 7)} ሳምንት`))}
                                                        {(ekub.ekubType === "የወር" && (ekub.duration - ((duration + 1) / 30) === 0 ? <Text style={{ color: "green" }}>አጠናቀዋል</Text> : `ቀሪ ${ekub.duration - ((duration + 1) / 30)} ወር`))}
                                                   </Text>
                                              </View>
-                                             <View style={[styles.resultContainer, { gap: 8, width: "100%" }]}>
-                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                  <Text style={[styles.smallTextAm, { width: "28%" }]}>ጠቅላላ የተከፈለ</Text>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: "100%", flexWrap: 'wrap' }}>
+                                                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, width: 130 }}>
+                                                       <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                       <Text style={styles.smallTextAm}>ጠቅላላ የተከፈለ</Text>
+                                                  </View>
                                                   <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                                  <Text style={styles.smallText}>{formatCurrency(sumOfPayment)}</Text>
+                                                  <Text style={[styles.smallText, { marginLeft: 8 }]}>{formatCurrency(sumOfPayment)}</Text>
                                              </View>
-                                             <View style={[styles.resultContainer, { gap: 8, width: "100%" }]}>
-                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                  <Text style={[styles.smallTextAm, { width: "28%" }]}>የተከፈለው እስከ</Text>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: "100%", flexWrap: 'wrap' }}>
+                                                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, width: 130 }}>
+                                                       <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                       <Text style={styles.smallTextAm}>የተከፈለው እስከ</Text>
+                                                  </View>
                                                   <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                                  <Text style={styles.smallText}>{newDate}</Text>
+                                                  <Text style={[styles.smallText, { marginLeft: 8 }]}>{newDate}</Text>
                                              </View>
                                              <View>
                                                   {(ekub.ekubType === "የቀን") &&
@@ -381,49 +402,54 @@ export default function EkubMember({ route, navigation }) {
                                                             {(ekubLastDate.isBefore(today)) ?
                                                                  <>
                                                                       {(endEkubDateDiff.years !== 0 || endEkubDateDiff.months !== 0 || endEkubDateDiff.days !== 0) &&
-                                                                           <View style={[styles.resultContainer, { gap: 8, width: "100%" }]}>
-                                                                                <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                                                <Text style={[styles.smallText, { width: "28%" }]}>ያልተከፈለ</Text>
+                                                                           <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: "100%", flexWrap: 'wrap' }}>
+                                                                                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, width: 130 }}>
+                                                                                     <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                                                     <Text style={styles.smallTextAm}>ያልተከፈለ</Text>
+                                                                                </View>
                                                                                 <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
                                                                                 {(endEkubDateDiff.years === 0 && endEkubDateDiff.months === 0 && endEkubDateDiff.days !== 0) && (endEkubDateDiff.days < 30) &&
-                                                                                     <Text style={[styles.smallText, { color: COLORS.red, width: "55%" }]}>{`የ ` + endEkubDateDiff.days + ` ቀን ( ` + formatCurrency(endEkubDateDiff.days * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                                                     <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + endEkubDateDiff.days + ` ቀን ( ` + formatCurrency(endEkubDateDiff.days * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                                                 }
                                                                                 {(endEkubDateDiff.years === 0 && endEkubDateDiff.months === 0 && endEkubDateDiff.days !== 0) && (endEkubDateDiff.days === 30) &&
-                                                                                     <Text style={[styles.smallText, { color: COLORS.red, width: "55%" }]}>{`የ ` + (endEkubDateDiff.months + 1) + ` ወር ( ` + formatCurrency(endEkubDateDiff.days * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                                                     <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + (endEkubDateDiff.months + 1) + ` ወር ( ` + formatCurrency(endEkubDateDiff.days * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                                                 }
                                                                                 {(endEkubDateDiff.years === 0 && endEkubDateDiff.months !== 0 && endEkubDateDiff.days !== 0) &&
-                                                                                     <Text style={[styles.smallText, { color: COLORS.red, width: "55%" }]}>{`የ ` + endEkubDateDiff.months + ` ወር ከ ` + endEkubDateDiff.days + ` ቀን ( ` + formatCurrency(((endEkubDateDiff.months * 30) + endEkubDateDiff.days) * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                                                     <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + endEkubDateDiff.months + ` ወር ከ ` + endEkubDateDiff.days + ` ቀን ( ` + formatCurrency(((endEkubDateDiff.months * 30) + endEkubDateDiff.days) * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                                                 }
                                                                                 {(endEkubDateDiff.years !== 0 && endEkubDateDiff.months !== 0 && endEkubDateDiff.days !== 0) &&
-                                                                                     <Text style={[styles.smallText, { color: COLORS.red, width: "55%" }]}>{`የ ` + endEkubDateDiff.years + ` አመት ከ ` + endEkubDateDiff.months + ` ወር ከ ` + endEkubDateDiff.days + ` ቀን ( ` + formatCurrency(((endEkubDateDiff.years * 365) + (endEkubDateDiff.months * 30 + endEkubDateDiff.days)) * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                                                     <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + endEkubDateDiff.years + ` አመት ከ ` + endEkubDateDiff.months + ` ወር ከ ` + endEkubDateDiff.days + ` ቀን ( ` + formatCurrency(((endEkubDateDiff.years * 365) + (endEkubDateDiff.months * 30 + endEkubDateDiff.days)) * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                                                 }
                                                                                 {(endEkubDateDiff.years !== 0 && endEkubDateDiff.months === 0 && endEkubDateDiff.days !== 0) &&
-                                                                                     <Text style={[styles.smallText, { color: COLORS.red, width: "55%" }]}>{`የ ` + endEkubDateDiff.years + ` አመት ከ ` + endEkubDateDiff.days + ` ቀን ( ` + formatCurrency((endEkubDateDiff.years * 365 + endEkubDateDiff.days) * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                                                     <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + endEkubDateDiff.years + ` አመት ከ ` + endEkubDateDiff.days + ` ቀን ( ` + formatCurrency((endEkubDateDiff.years * 365 + endEkubDateDiff.days) * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                                                 }
-                                                                           </View>}
+                                                                           </View>
+                                                                      }
                                                                  </>
 
                                                                  :
                                                                  <>
                                                                       {((lastPaymentDate.isBefore(today)) && (lastPaymentDate.isBefore(ekubLastDate))) &&
-                                                                           <View style={[styles.resultContainer, { gap: 8, width: "100%" }]}>
-                                                                                <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                                                <Text style={[styles.smallTextAm, { width: "28%" }]}>ያልተከፈለ</Text>
+                                                                           <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: "100%", flexWrap: 'wrap' }}>
+                                                                                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, width: 130 }}>
+                                                                                     <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                                                     <Text style={styles.smallTextAm}>ያልተከፈለ</Text>
+                                                                                </View>
                                                                                 <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
                                                                                 {(diff.years === 0 && diff.months === 0 && diff.days !== 0) && (diff.days < 30) &&
-                                                                                     <Text style={[styles.smallTextAm, { color: COLORS.red, width: "55%" }]}>{`የ ` + diff.days + ` ቀን ( ` + formatCurrency(diff.days * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                                                     <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + diff.days + ` ቀን ( ` + formatCurrency(diff.days * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                                                 }
                                                                                 {(diff.years === 0 && diff.months === 0 && diff.days !== 0) && (diff.days === 30) &&
-                                                                                     <Text style={[styles.smallTextAm, { color: COLORS.red, width: "55%" }]}>{`የ ` + (diff.months + 1) + ` ወር ( ` + formatCurrency(diff.days * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                                                     <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + (diff.months + 1) + ` ወር ( ` + formatCurrency(diff.days * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                                                 }
                                                                                 {(diff.years === 0 && diff.months !== 0 && diff.days !== 0) &&
-                                                                                     <Text style={[styles.smallTextAm, { color: COLORS.red, width: "55%" }]}>{`የ ` + diff.months + ` ወር ከ ` + diff.days + ` ቀን ( ` + formatCurrency(((diff.months * 30) + diff.days) * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                                                     <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + diff.months + ` ወር ከ ` + diff.days + ` ቀን ( ` + formatCurrency(((diff.months * 30) + diff.days) * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                                                 }
                                                                                 {(diff.years !== 0 && diff.months !== 0 && diff.days !== 0) &&
-                                                                                     <Text style={[styles.smallTextAm, { color: COLORS.red, width: "55%" }]}>{`የ ` + diff.years + ` አመት ከ ` + diff.months + ` ወር ከ ` + diff.days + ` ቀን ( ` + formatCurrency(((diff.years * 365) + (diff.months * 30 + diff.days)) * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                                                     <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + diff.years + ` አመት ከ ` + diff.months + ` ወር ከ ` + diff.days + ` ቀን ( ` + formatCurrency(((diff.years * 365) + (diff.months * 30 + diff.days)) * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                                                 }
                                                                                 {(diff.years !== 0 && diff.months === 0 && diff.days !== 0) &&
-                                                                                     <Text style={[styles.smallTextAm, { color: COLORS.red, width: "55%" }]}>{`የ ` + diff.years + ` አመት ከ ` + diff.days + ` ቀን ( ` + formatCurrency((diff.years * 365 + diff.days) * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                                                     <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + diff.years + ` አመት ከ ` + diff.days + ` ቀን ( ` + formatCurrency((diff.years * 365 + diff.days) * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                                                 }
                                                                            </View>
                                                                       }
@@ -433,20 +459,24 @@ export default function EkubMember({ route, navigation }) {
                                                   }
 
                                                   {((ekub.ekubType === "የሳምንት") && (lastPaymentDate.isBefore(today)) && (diff.weeks !== 0)) &&
-                                                       <View style={[styles.resultContainer, { gap: 8, width: "100%" }]}>
-                                                            <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                            <Text style={[styles.smallTextAm, { width: "28%" }]}>ያልተከፈለ</Text>
+                                                       <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: "100%", flexWrap: 'wrap' }}>
+                                                            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, width: 130 }}>
+                                                                 <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                                 <Text style={styles.smallTextAm}>ያልተከፈለ</Text>
+                                                            </View>
                                                             <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                                            <Text style={[styles.smallText, { color: COLORS.red, width: "55%" }]}>{`የ ` + diff.weeks + ` ሳምንት ( ` + formatCurrency(diff.weeks * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                            <Text style={[styles.smallText, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + diff.weeks + ` ሳምንት ( ` + formatCurrency(diff.weeks * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                        </View>
                                                   }
 
                                                   {((ekub.ekubType === "የወር") && (lastPaymentDate.isBefore(today)) && (diff.totalMonths !== 0)) &&
-                                                       <View style={[styles.resultContainer, { gap: 8, width: "100%" }]}>
-                                                            <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                            <Text style={[styles.smallTextAm, { width: "28%" }]}>ያልተከፈለ</Text>
+                                                       <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: "100%", flexWrap: 'wrap' }}>
+                                                            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, width: 130 }}>
+                                                                 <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                                 <Text style={styles.smallTextAm}>ያልተከፈለ</Text>
+                                                            </View>
                                                             <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                                            <Text style={[styles.smallTextAm, { color: COLORS.red, width: "55%" }]}>{`የ ` + diff.totalMonths + ` ወር ( ` + formatCurrency(diff.totalMonths * ekubMember.paymentAmount) + ` ብር )`}</Text>
+                                                            <Text style={[styles.smallTextAm, { marginLeft: 8, color: COLORS.red }]}>{`የ ` + diff.totalMonths + ` ወር ( ` + formatCurrency(diff.totalMonths * ekubMember.paymentAmount) + ` ብር )`}</Text>
                                                        </View>
                                                   }
 
@@ -455,28 +485,34 @@ export default function EkubMember({ route, navigation }) {
 
                                              {sumOfEkubRecipients !== null &&
                                                   <>
-                                                       <View style={[styles.resultContainer, { gap: 8, width: "100%" }]}>
-                                                            <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                            <Text style={[styles.smallTextAm, { width: "28%" }]}>የተፈጸመ ክፍያ </Text>
+                                                       <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: "100%", flexWrap: 'wrap' }}>
+                                                            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, width: 130 }}>
+                                                                 <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                                 <Text style={styles.smallTextAm}>የተፈጸመ ክፍያ</Text>
+                                                            </View>
                                                             <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                                            <Text style={styles.smallText}>{formatCurrency(sumOfEkubRecipients)}</Text>
+                                                            <Text style={[styles.smallText, { marginLeft: 8 }]}>{formatCurrency(sumOfEkubRecipients)}</Text>
                                                        </View>
 
                                                        {sumOfPayment - sumOfEkubRecipients > 0 &&
-                                                            <View style={[styles.resultContainer, { gap: 8, width: "100%" }]}>
-                                                                 <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                                 <Text style={[styles.smallTextAm, { width: "28%" }]}>ያልተፈጸመ ክፍያ </Text>
+                                                            <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: "100%", flexWrap: 'wrap' }}>
+                                                                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, width: 130 }}>
+                                                                      <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                                      <Text style={styles.smallTextAm}>ያልተፈጸመ ክፍያ</Text>
+                                                                 </View>
                                                                  <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                                                 <Text style={styles.smallText}>{formatCurrency(sumOfPayment - sumOfEkubRecipients)}</Text>
+                                                                 <Text style={[styles.smallText, { marginLeft: 8 }]}>{formatCurrency(sumOfPayment - sumOfEkubRecipients)}</Text>
                                                             </View>
                                                        }
 
                                                        {sumOfEkubRecipients - sumOfPayment > 0 &&
-                                                            <View style={[styles.resultContainer, { gap: 8, width: "100%" }]}>
-                                                                 <Entypo name="controller-record" size={14} color={COLORS.primary} />
-                                                                 <Text style={[styles.smallTextAm, { width: "28%" }]}>ቀሪ እዳ </Text>
+                                                            <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: "100%", flexWrap: 'wrap' }}>
+                                                                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, width: 130 }}>
+                                                                      <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                                      <Text style={styles.smallTextAm}>ቀሪ እዳ</Text>
+                                                                 </View>
                                                                  <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
-                                                                 <Text style={styles.smallText}>{formatCurrency(sumOfEkubRecipients - sumOfPayment)}</Text>
+                                                                 <Text style={[styles.smallText, { marginLeft: 8 }]}>{formatCurrency(sumOfEkubRecipients - sumOfPayment)}</Text>
                                                             </View>
                                                        }
                                                   </>

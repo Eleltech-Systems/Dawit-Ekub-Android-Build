@@ -130,7 +130,7 @@ export default function StartNewEkub({ navigation }) {
                               {/* Input Forms */}
                               <View style={{ padding: 20 }}>
                                    <View style={styles.inputContainer}>
-                                        <Text style={styles.mediumTextAm}>የእቁብ ስም፡</Text>
+                                        <Text style={styles.mediumTextAm}>የባለእቁብ ስም፡</Text>
                                         <Controller
                                              control={control}
                                              rules={{ required: true, }}
@@ -141,7 +141,7 @@ export default function StartNewEkub({ navigation }) {
                                                        <TextInput
                                                             style={styles.inputText}
                                                             value={value}
-                                                            placeholder="ምሳሌ፡ ሰላም እቁብ"
+                                                            placeholder="ምሳሌ፡ ሰለሞን እቁብ"
                                                             placeholderTextColor={COLORS.gray2}
                                                             onChangeText={(text) => {
                                                                  onChange(text); // Update react-hook-form state
@@ -182,7 +182,7 @@ export default function StartNewEkub({ navigation }) {
                                    </View>
 
                                    <View style={styles.inputContainer}>
-                                        <Text style={styles.mediumTextAm}>መደብ ብር፡</Text>
+                                        <Text style={styles.mediumTextAm}>መደብ ብር መጠን፡</Text>
                                         <Controller
                                              control={control}
                                              rules={{ required: true, }} name="medebAmount"
@@ -243,10 +243,10 @@ export default function StartNewEkub({ navigation }) {
                                    </View>
 
                                    <View style={styles.inputContainer}>
-                                        {ekubType === '' && <Text style={styles.mediumText}></Text>}
-                                        {ekubType === 'የቀን' && <Text style={styles.mediumTextAm}>{"የሚፈጀው ቀን፡"}</Text>}
-                                        {ekubType === 'የሳምንት' && <Text style={styles.mediumTextAm}>{"የሚፈጀው ሳምንት፡"}</Text>}
-                                        {ekubType === 'የወር' && <Text style={styles.mediumTextAm}>{"የሚፈጀው ወር፡"}</Text>}
+                                        {ekubType === '' && <Text style={styles.mediumText}>የሚፈጀው ጊዜ፡</Text>}
+                                        {ekubType === 'የቀን' && <Text style={styles.mediumTextAm}>የሚፈጀው ቀን፡</Text>}
+                                        {ekubType === 'የሳምንት' && <Text style={styles.mediumTextAm}>የሚፈጀው ሳምንት፡</Text>}
+                                        {ekubType === 'የወር' && <Text style={styles.mediumTextAm}>የሚፈጀው ወር፡</Text>}
                                         <Controller
                                              control={control}
                                              rules={{ required: true, }}
@@ -285,20 +285,30 @@ export default function StartNewEkub({ navigation }) {
                                         </View>
                                    </View>
                                    <View style={{ backgroundColor: COLORS.secondary2, paddingHorizontal: 20, paddingBottom: 10, paddingTop: 10, borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }}>
-                                        <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallTextAm, { width: "34%", }]}>የእቁብ አይነት፡</Text>
-                                             <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
-                                             <Text style={[styles.smallTextAm, { marginLeft: 10 }]}>{ekubType}</Text>
+
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 140 }}>
+                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                  <Text style={styles.smallTextAm}>የእቁብ አይነት፡</Text>
+                                             </View>
+                                             <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
+                                             <Text style={[styles.smallText, { marginLeft: 14 }]}>{ekubType}</Text>
                                         </View>
-                                        <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallTextAm, { width: "34%", }]}>መደብ ብር፡</Text>
-                                             <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
-                                             <Text style={[styles.smallText, { marginLeft: 10 }]}>{formatCurrency(medebAm)}</Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 140 }}>
+                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                  <Text style={styles.smallTextAm}>መደብ ብር መጠን፡</Text>
+                                             </View>
+                                             <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
+                                             <Text style={[styles.smallText, { marginLeft: 14 }]}>{formatCurrency(medebAm)}</Text>
                                         </View>
-                                        <View style={styles.resultContainer}>
-                                             <Text style={[styles.smallTextAm, { width: "34%", }]}>የሚጀመርበት ቀን፡ </Text>
-                                             <Entypo name="arrow-long-right" size={20} color={COLORS.primary} />
-                                             <Text style={[styles.smallText, { marginLeft: 10 }]}>{startDat}</Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: 140 }}>
+                                                  <Entypo name="controller-record" size={14} color={COLORS.primary} />
+                                                  <Text style={styles.smallTextAm}>የሚጀመርበት ቀን፡</Text>
+                                             </View>
+                                             <Entypo name="arrow-long-right" size={18} color={COLORS.primary} />
+                                             <Text style={[styles.smallText, { marginLeft: 14 }]}>{startDat}</Text>
                                         </View>
                                         <Text style={[styles.smallTextAm, { marginTop: 20 }]}>{"ይህ  "}
                                              <Text style={{ color: COLORS.primary }}>{ekubType}</Text>{"  እቁብ የሚጠናቀቀው በ  "}
@@ -360,10 +370,10 @@ export default function StartNewEkub({ navigation }) {
                          <View style={{ marginBottom: 50 }}>
                               {isValid === true ?
                                    <TouchableOpacity onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.primary }]}>
-                                        <Text style={[styles.smallTextAm, { color: COLORS.offwhite }]}>ይጀምሩ</Text>
+                                        <Text style={[styles.mediumTextAm, { color: COLORS.offwhite }]}>ይጀምሩ</Text>
                                    </TouchableOpacity> :
                                    <Pressable onPress={handleSubmit(onPressSend)} style={[styles.submitButtons, { backgroundColor: COLORS.btnInValid }]}>
-                                        <Text style={[styles.smallTextAm, { color: COLORS.darkText }]}>ይጀምሩ</Text>
+                                        <Text style={[styles.mediumTextAm, { color: COLORS.darkText }]}>ይጀምሩ</Text>
                                    </Pressable>
                               }
                          </View>
